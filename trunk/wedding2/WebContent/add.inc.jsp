@@ -1,20 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.io.InputStream"%>
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
+<%@page import="org.apache.commons.fileupload.FileItemIterator"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.FileItemStream"%>
+<%@page import="org.apache.commons.fileupload.util.Streams"%>
+<%@page import="java.util.Vector"%>
+<%@page import="sg.edu.ntu.wedding.Parse"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.InputStreamReader"%>
 
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
 // handle form
-String action = request.getParameter("action");
-if ("add".equals(action)) {
-	Guest g = new Guest(request);
-	int id = db.insert(
-			"insert into GUEST (name, allocated, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-			g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getStatus(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
-	);
-}
+if (ServletFileUpload.isMultipartContent(request)) {
+	// Create a new file upload handler
+	ServletFileUpload upload = new ServletFileUpload();
 
+	// Parse the request
+	FileItemIterator iter = upload.getItemIterator(request);
+	Vector<String> lines = new Vector<String>();
+	boolean auto = false;
+	while (iter.hasNext()) {
+	    FileItemStream item = iter.next();
+	    String name = item.getFieldName();
+	    InputStream stream = item.openStream();
+	    if (item.isFormField()) {
+	        if ("auto".equals(name)) {
+	        	auto = Parse.toBoolean(Streams.asString(stream));
+	        }
+	    } else {
+	    	if ("file".equals(name)) {
+	    		BufferedReader in = new BufferedReader(new InputStreamReader(stream, "utf8"));
+	    		while (true) {
+	    			String line = in.readLine();
+	    			if (line == null) break;
+	    			if (line.trim().length() > 0) {
+	    				lines.add(line);
+	    			}
+	    		}
+	    	}
+	    	// TODO process import
+	    }
+	}
+} else {
+	String action = request.getParameter("action");
+	if ("add".equals(action)) {
+		Guest g = new Guest(request);
+		int id = db.insert(
+				"insert into GUEST (name, allocated, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
+				g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getStatus(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
+		);
+	}
+}
 %>
 
 <h1>Add/import guests</h1>
@@ -85,11 +125,11 @@ if ("add".equals(action)) {
 
 <h2>Or, import list of guests from file</h2>
 
-<form name="form1" method="post" enctype="application/x-www-form-urlencoded">
+<form name="form1" method="post" enctype="multipart/form-data">
 	<table class="form">
 		<tr>
 			<td>Data File</td>
-			<td><input type="file" name="file"  required="required" size="60" /></td>
+			<td><input type="file" name="file" required="required" size="60" /></td>
 		</tr>
 		<tr>
 			<td>AutoAssign</td>
