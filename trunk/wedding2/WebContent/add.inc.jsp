@@ -26,7 +26,7 @@ if ("add".equals(action)) {
     <tr>
       <td>Name</td>
       <td>
-        <input name="name" type="text" id="name" size="24" maxlength="64" />
+        <input name="name" type="text" required="required" id="name" size="24" maxlength="64" />
       </td>
     </tr>
     <tr>
@@ -52,7 +52,7 @@ if ("add".equals(action)) {
     <tr>
       <td>Total number of guests </td>
       <td>
-        <input name="guestTotal" type="number" min="1" max="10" id="guestTotal" size="6" maxlength="2" />
+        <input name="guestTotal" type="number" min="1" max="10" required="required" id="guestTotal" size="6" maxlength="2" />
       </td>
     </tr>
     <tr>
@@ -89,7 +89,7 @@ if ("add".equals(action)) {
 	<table class="form">
 		<tr>
 			<td>Data File</td>
-			<td><input type="file" name="file" size="60" /></td>
+			<td><input type="file" name="file"  required="required" size="60" /></td>
 		</tr>
 		<tr>
 			<td>AutoAssign</td>
