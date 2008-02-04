@@ -34,31 +34,16 @@ public class Guest {
 
     public Guest(HttpServletRequest req) {
         name = req.getParameter("name");
-        allocated = parseBoolean(req.getParameter("allocated"));
-        tableID = parseInt(req.getParameter("tableID"));
+        allocated = Parse.toBoolean(req.getParameter("allocated"));
+        tableID = Parse.toInt(req.getParameter("tableID"));
         category = req.getParameter("category");
         invitedBy = req.getParameter("invitedBy");
         status = req.getParameter("status");
-        guestTotal = parseInt(req.getParameter("guestTotal"));
-        guestVeg = parseInt(req.getParameter("guestVeg"));
-        guestMus = parseInt(req.getParameter("guestMus"));    
+        guestTotal = Parse.toInt(req.getParameter("guestTotal"));
+        guestVeg = Parse.toInt(req.getParameter("guestVeg"));
+        guestMus = Parse.toInt(req.getParameter("guestMus"));    
     }
 
-    private static int parseInt(String s) {
-    	try {
-    		return Integer.parseInt(s);
-    	} catch (NumberFormatException e) {
-    		return 0;
-    	}
-    }
-    private static boolean parseBoolean(String s) {
-    	try {
-    		return Integer.parseInt(s) != 0;
-    	} catch (NumberFormatException e) {
-    		return Boolean.parseBoolean(s);
-    	}
-    }
-    
 	public String getName() {
 		return name;
 	}
