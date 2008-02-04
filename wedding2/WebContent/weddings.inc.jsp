@@ -109,19 +109,19 @@ function delete_(id) {
 <table class="form">
     <tr>
         <td>Bride Name</td>
-        <td><input type="text" name="brideName" size="20" maxlength="64" /></td>
+        <td><input type="text" name="brideName" size="20" maxlength="64" required="required" /></td>
     </tr>
     <tr>
         <td>Groom Name</td>
-        <td><input type="text" name="groomName" size="20" maxlength="64" /></td>
+        <td><input type="text" name="groomName" size="20" maxlength="64" required="required" /></td>
     </tr>
     <tr>
         <td>Date (yyyy-mm-dd)</td>
-        <td><input type="date" name="date" size="10" maxlength="10" /></td>
+        <td><input type="date" name="date" size="10" maxlength="10" required="required" /></td>
     </tr>
     <tr>
         <td>Number of Tables</td>
-        <td><input type="number" min="1" max="999" name="tables" size="6" maxlength="3" value="50" /></td>
+        <td><input type="number" min="1" max="999" name="tables" size="6" maxlength="3" value="50" required="required" /></td>
     </tr>
     <tr>
         <td><input type="hidden" name="action" value="create" /></td>
