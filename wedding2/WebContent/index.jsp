@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>The Wedding Dinner Planner</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script type="text/javascript" src="js/webforms2.js"></script>
 </head>
 
 
@@ -25,7 +27,7 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", }) {
 
 %>
 
-<div id="leftmenu">
+<div id="leftMenu">
 	<%@include file="leftmenu.inc.jsp" %>
 </div>
  
@@ -37,5 +39,10 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", }) {
 	<% } %>
 </div>
 
+
+<div id="debugPanel">
+	<%@include file="debug.inc.jsp" %>
+</div>
+ 
 </body>
 </html>

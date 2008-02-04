@@ -7,5 +7,52 @@ body {
 	font-weight: normal;
 }
 
+#main {
+	margin-left: 220px; 
+}
 
+#leftMenu {
+	float: left;
+	clear: none;
+	width: 200px;
+}
+
+#debugPanel {
+	color: gray;
+	font-size: 70%;
+	border: 2px dashed gray;
+	margin-top: 32px;
+	clear: both;
+}
+
+#debugPanel:before {
+	content: "Debug panel";
+}
+
+.listview {
+	border: 1px grey solid;
+	border-collapse: collapse;
+}
+
+.listview th {
+	background-color: #ddd;
+}
+
+.listview td, .listview th {
+	padding-left: 2px;
+	padding-right: 2px;
+	border-left: 1px lightgray dashed;
+	border-right: 1px lightgray dashed;
+}
+
+.form {
+	border: 1px grey solid;
+	border-spacing: 3px;
+	border-collapse: collapse;
+}
+
+.form td, .form th {
+	padding-left: 2px;
+	padding-right: 6px;
+}
 
