@@ -1,5 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
+<%@page import="sg.edu.ntu.wedding.Guest"%>
+
+<%
+DatabaseConnection db = DatabaseConnection.getInstance();
+
+// handle form
+String action = request.getParameter("action");
+if ("add".equals(action)) {
+	Guest g = new Guest(request);
+	int id = db.insert(
+			"insert into GUEST (name, allocated, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
+			g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getStatus(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
+	);
+}
+
+%>
 
 <h1>Add/import guests</h1>
 
