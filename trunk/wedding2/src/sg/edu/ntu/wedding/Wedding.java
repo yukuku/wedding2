@@ -17,7 +17,6 @@ public class Wedding {
     }
     
     public Wedding(ResultSet rs) throws SQLException {
-        rs.next();
         brideName = rs.getString("brideName");
         groomName = rs.getString("groomName");
         date = rs.getDate("date");
@@ -26,7 +25,7 @@ public class Wedding {
     public Wedding(HttpServletRequest req) throws ParseException {
         brideName = req.getParameter("brideName");
         groomName = req.getParameter("groomName");
-        date = new SimpleDateFormat("yyyy-MM-DD").parse(req.getParameter("date"));
+        date = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("date"));
     }
 
     public String getBrideName() {

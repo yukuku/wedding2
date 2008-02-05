@@ -98,13 +98,13 @@ if (ServletFileUpload.isMultipartContent(request)) {
     <tr>
       <td>- Vegetarians </td>
       <td>
-        <input name="guestVeg" type="number" min="1" max="10" id="guestVeg" value="0" size="6" maxlength="2" />
+        <input name="guestVeg" type="number" min="0" max="10" id="guestVeg" value="0" size="6" maxlength="2" />
       </td>
     </tr>
     <tr>
       <td>- Muslims </td>
       <td>
-        <input name="guestMus" type="number" min="1" max="10" id="guestMus" value="0" size="6" maxlength="2" />
+        <input name="guestMus" type="number" min="0" max="10" id="guestMus" value="0" size="6" maxlength="2" />
       </td>
     </tr>
     <tr>
