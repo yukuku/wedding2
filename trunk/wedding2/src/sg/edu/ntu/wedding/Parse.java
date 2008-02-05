@@ -1,5 +1,9 @@
 package sg.edu.ntu.wedding;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Parse {
 
 	public static int toInt(String s) {
@@ -17,5 +21,13 @@ public class Parse {
 			return Boolean.parseBoolean(s);
 		}
 	}
+
+    public static Date toDate(String s) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(s);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
 
 }
