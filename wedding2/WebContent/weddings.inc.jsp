@@ -42,7 +42,11 @@ if ("activate".equals(action)) {
     Integer id = (Integer)session.getAttribute(Constant.Session.activeWedding);
     if (id != null && id != 0) {
         ResultSet rs = db.select("select * from WEDDING where id=?", id);
-        pageContext.setAttribute("active", new Wedding(rs));
+    	if (rs.next()) {
+        	pageContext.setAttribute("active", new Wedding(rs));
+    	} else {
+    		session.removeAttribute(Constant.Session.activeWedding);
+    	}
     }
 }
 

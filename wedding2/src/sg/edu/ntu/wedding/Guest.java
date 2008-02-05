@@ -20,7 +20,6 @@ public class Guest {
 	}
 
     public Guest(ResultSet rs) throws SQLException {
-        rs.next();
         name = rs.getString("name");
         allocated = rs.getBoolean("allocated");
         tableID = rs.getInt("tableID");
