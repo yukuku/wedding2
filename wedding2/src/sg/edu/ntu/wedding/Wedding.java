@@ -3,7 +3,6 @@ package sg.edu.ntu.wedding;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ public class Wedding {
     public Wedding(HttpServletRequest req) throws ParseException {
         brideName = req.getParameter("brideName");
         groomName = req.getParameter("groomName");
-        date = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("date"));
+        date = Parse.toDate(req.getParameter("date"));
     }
 
     public String getBrideName() {
