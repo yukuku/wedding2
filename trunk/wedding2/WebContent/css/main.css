@@ -15,6 +15,7 @@ body {
 	float: left;
 	clear: none;
 	width: 200px;
+	height: 300px
 }
 
 #debugPanel {
