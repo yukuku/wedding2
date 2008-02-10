@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<ul>
-    <li><a href="./?module=main">Home</a></li>
-    <li><a href="./?module=weddings">Manage Weddings</a></li>
-</ul>
+<script language="JavaScript" src="js/menu.js"></script>
+<script language="JavaScript" src="js/menu_tpl.js"></script>
 
-<ul>
-    <li><a href="./?module=overview">Overview</a></li>
-</ul>
+<script language="JavaScript">
+<!--//
+var MENU_ITEMS = [
+['Home Page','./?module=main', {'tw' : '_parent'},]
+,['Manage Weddings','./?module=weddings', {'tw' : '_parent'},]
+,['Overview','./?module=overview', {'tw' : '_parent'},]
+,['Add/import guests','./?module=add', {'tw' : '_parent'},]
+,['Edit guests','./?module=edit', {'tw' : '_parent'},]
+,['Table assignments','./?module=assign', {'tw' : '_parent'},]
+,['AutoAssign (tm)','./?module=auto', {'tw' : '_parent'},]
+,['Attendance','./?module=attendance', {'tw' : '_parent'},]
+,['Reports','./?module=report', {'tw' : '_parent'},]
+];
+new menu (MENU_ITEMS, MENU_POS);
+//-->
+</script>
 
-<ul>
-    <li><a href="./?module=add">Add/import guests</a></li>
-    <li><a href="./?module=edit">Edit guests</a></li>
-    <li><a href="./?module=assign">Table assignments</a></li>
-    <li><a href="./?module=auto">AutoAssign (tm)</a></li>
-</ul>
-
-<ul>
-    <li><a href="./?module=attendance">Attendance</a></li>
-    <li><a href="./?module=report">Reports</a></li>
-</ul>
