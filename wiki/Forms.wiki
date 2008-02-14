@@ -14,6 +14,8 @@ We haven’t decided the form interface.
 
 There will be two forms for this, one will show the guest information in grid, there will be one button for delete and one link for edit(support guest id in grid will be link). If the guest id is clicked, one form will be appeared to edit this guest information. After updating, the system will redirect to first grid form.
 
+Example: _ Waku  _   [ Delete ]
+
 3. Manual Assign Form
 
 Not sure the interface yet (pls confirm)
