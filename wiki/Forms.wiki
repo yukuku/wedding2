@@ -18,12 +18,10 @@ Example: _ Waku  _   [ Delete ]
 
 3. Manual Assign Form
 
-*Not sure the interface yet (pls confirm)*
-There will be two grids showing wedding-table information and guest information. Under these two grids, there will be two drop-down lists; one is for guest ID and one is for Table ID and then on button, assign.
+There will be grid showing guest information and then click assign. New form with available tables will be shown, select table and click ok.
 
 4. Attendance Form
 
-*Not sure yet for interface (pls confirm)*
 A grid showing the guest information will have dropdown list for every row. From this dropdown list, u can select whatever status u want to change and then click save.
 
 5.	Wedding Form
@@ -37,4 +35,4 @@ By clicking the guest id, the user can go to edit guest information.
 
 7.	Add Guest Form
 
-Need to implement for file uploading function. After file uploading, the system will redirect to *Report (without showing wedding dropdown) or Manual Assign Form. (pls confirm)*
+Need to implement for file uploading function. After file uploading, the system will redirect to Report (without showing wedding dropdown)
