@@ -1,0 +1,38 @@
+#summary Interface forms
+
+
+According to our discussion,
+
+We haven’t done any of the following forms
+
+1. Auto Assign Form
+
+to create separate class for application logic. 
+We haven’t decided the form interface.
+
+2. Guest Edit/Delete Form
+
+There will be two forms for this, one will show the guest information in grid, there will be one button for delete and one link for edit(support guest id in grid will be link). If the guest id is clicked, one form will be appeared to edit this guest information. After updating, the system will redirect to first grid form.
+
+3. Manual Assign Form
+
+Not sure the interface yet (pls confirm)
+There will be two grids showing wedding-table information and guest information. Under these two grids, there will be two drop-down lists; one is for guest ID and one is for Table ID and then on button, assign.
+
+4. Attendance Form
+
+Not sure yet for interface (pls confirm)
+A grid showing the guest information will have dropdown list for every row. From this dropdown list, u can select whatever status u want to change and then click save.
+
+5.	Wedding Form
+
+Need to add function for editing wedding information
+
+6.	Report
+
+This form will have one dropdown list to choose wedding and grid to show all guest information about the selected wedding.
+By clicking the guest id, the user can go to edit guest information.
+
+7.	Add Guest Form
+
+Need to implement for file uploading function. After file uploading, the system will redirect to Report (without showing wedding dropdown) or Manual Assign Form. (pls confirm)
