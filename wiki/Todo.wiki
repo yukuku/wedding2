@@ -1,0 +1,6 @@
+#summary To be done
+
+
+  * To find the script for table scrolling.
+  * To check Table Type like vage-table or mul-table during run-time
+  * To add logo and pictures
