@@ -1,8 +1,8 @@
 ==As discussed on Thursday. Below is our database schema==
-|| TableName || Fields ||
-|| IP_WEDDING || *WID* , GROOM , BRIDE , TABLENO , WDATE ||
-|| IP_GUESTLIST || *GID* , _WID_ , GNAME , GTYPE , INVITEDBY , STATUS , TID , NUMGRP , NUMVEG , NUMMUS ||
-|| IP_TABLE || *WID* , *TID* ||
+|| Table Name || Fields ||
+|| IP_WEDDING || *ID* , GROOMNAME , BRIDENAME , DATE , HOTELNAME ||
+|| IP_GUEST || *ID* , _WEDDINGID_ , NAME , ALLOCATED , INVITEDBY , STATUS , TABLEID , GUESTTOTAL , GUESTVEG , GUESTMUS ||
+|| IP_TABLE || *WEDDINGID* , *NUMBER* , VACANCY ||
 
 
 
@@ -12,4 +12,3 @@ For table,
 
   Three tables are confirmed.
   To change the “Table” table name to something meaningful.. 
-
