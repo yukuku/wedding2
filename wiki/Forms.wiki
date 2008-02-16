@@ -28,10 +28,16 @@ A grid showing the guest information will have dropdown list for every row. From
 
 Need to add function for editing wedding information
 
-6.	Report
+6.	Report --> _Changed Name to 'Guest List'_
 
 This form will have one dropdown list to choose wedding and grid to show all guest information about the selected wedding.
 By clicking the guest id, the user can go to edit guest information.
+
+Need to-do
+ * Deleting guest function
+ * Export servlets
+ * Editing / Updating Guest: ^Depends on^ Item 2
+
 
 7.	Add Guest Form
 
