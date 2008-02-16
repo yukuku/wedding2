@@ -30,6 +30,11 @@ function delete_(id, gname) {
     	document.formDelete.submit();
     }
 }
+
+function exportAs(suffix) {
+	var selectOpt = document.formSelect.weddingID;
+	window.location = "GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value;
+}
 </script>
 
 <%
@@ -59,6 +64,16 @@ if (weddingID == null || weddingID == "") weddingID = "0";
 	</select>
 </form>
 
+<%     
+if (weddingID != "0") {
+%>
+<form name="formExport" method="get">
+    <input type="button" onclick="exportAs('pdf')" value="Export as PDF" />
+    <input type="button" onclick="exportAs('xls')" value="Export as Excel" />
+</form>
+<%
+}
+%>
 <table class="listview">
 <tr>
   <th>Guest Title</th><th>Invited By</th><th>Table ID</th><th>Guest Number</th><th>Vegetarians</th><th>Muslims</th><th>Edit Guest</th><th>Delete Guest</th>
