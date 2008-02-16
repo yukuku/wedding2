@@ -19,7 +19,7 @@
 boolean moduleOk = false;
 String module = request.getParameter("module");
 if (module == null) module = "main";
-for (String ok: new String[] {"main", "weddings", "add", "edit", }) {
+for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", }) {
     if (ok.equals(module)) {
         moduleOk = true;
         break;
