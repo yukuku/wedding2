@@ -33,7 +33,7 @@ function delete_(id, gname) {
 
 function exportAs(suffix) {
 	var selectOpt = document.formSelect.weddingID;
-	window.location = "GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value;
+	window.open("GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value);
 }
 </script>
 
