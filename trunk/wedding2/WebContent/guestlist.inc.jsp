@@ -7,6 +7,7 @@
 
 
 <h2>test 1 2 3</h2>
+
 <form name="formEdit" action="./?module=edit" method="post">
     <input type="hidden" name="action" value="edit" />
     <input type="hidden" name="id" value="0" />
@@ -34,7 +35,29 @@ function delete_(id, gname) {
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 Printer prn = new Printer(out);
+String weddingID = request.getParameter("weddingID");
+if (weddingID == null || weddingID == "") weddingID = "0";
 %>
+
+<form name="formSelect" method="post">
+<span>Please select a wedding: </span>
+	<select name="weddingID" onchange="submit()">
+		<option value=""></option>
+<%
+{
+	ResultSet rsWedding = db.select("SELECT * FROM IP_WEDDING");
+	while(rsWedding.next()){
+		if(weddingID != null && weddingID.equals(rsWedding.getString("ID"))){
+			out.println("<option value=\"" + weddingID + "\" selected=\"selected\">" + rsWedding.getString("groomName") + " & " + rsWedding.getString("brideName") + " (" + rsWedding.getString("Date") + "@" + rsWedding.getString("HotelName") + ")" + "</option>");
+		}
+		else {
+			out.println("<option value=\"" + rsWedding.getString("ID") + "\">" + rsWedding.getString("groomName") + " & " + rsWedding.getString("brideName") + " (" + rsWedding.getString("Date") + "@" + rsWedding.getString("HotelName") + ")" + "</option>");
+		}
+	} 
+}
+%>
+	</select>
+</form>
 
 <table class="listview">
 <tr>
@@ -42,9 +65,8 @@ Printer prn = new Printer(out);
 </tr>
 <%
 {
-    Integer id = (Integer)session.getAttribute(Constant.Session.activeWedding);
-    id = 1;
-    if (id != null && id != 0) {
+    Integer id = new Integer(weddingID);
+    if (id != 0) {
         ResultSet rs = db.select("SELECT * FROM IP_GUEST WHERE WEDDINGID=?", id);
         while (rs.next()) {
             prn.tr(rs.getString("NAME"), 
