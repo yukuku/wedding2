@@ -1,4 +1,6 @@
-==As discussed on Thursday. Below is our database schema==
+#summary Database Schema
+
+===As discussed on Thursday. Below is our database schema===
 || Table Name || Fields ||
 || IP_WEDDING || *ID* , GROOMNAME , BRIDENAME , DATE , HOTELNAME ||
 || IP_GUEST || *ID* , _WEDDINGID_ , NAME , ALLOCATED , INVITEDBY , STATUS , TABLEID , GUESTTOTAL , GUESTVEG , GUESTMUS ||
