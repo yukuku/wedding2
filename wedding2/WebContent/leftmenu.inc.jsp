@@ -11,6 +11,7 @@ var MENU_ITEMS = [
 ,['Overview','./?module=overview', {'tw' : '_parent'},]
 ,['Add/import guests','./?module=add', {'tw' : '_parent'},]
 ,['Edit guests','./?module=edit', {'tw' : '_parent'},]
+,['Guest List','./?module=guestlist', {'tw' : '_parent'},]
 ,['Table assignments','./?module=assign', {'tw' : '_parent'},]
 ,['AutoAssign (tm)','./?module=auto', {'tw' : '_parent'},]
 ,['Attendance','./?module=attendance', {'tw' : '_parent'},]
