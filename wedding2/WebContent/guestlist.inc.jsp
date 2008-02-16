@@ -7,6 +7,29 @@
 
 
 <h2>test 1 2 3</h2>
+<form name="formEdit" action="./?module=edit" method="post">
+    <input type="hidden" name="action" value="edit" />
+    <input type="hidden" name="id" value="0" />
+</form>
+
+<form name="formDelete" method="post">
+    <input type="hidden" name="action" value="delete" />
+    <input type="hidden" name="id" value="0" />
+</form>
+<script type="text/javascript">
+
+function editguest(id) {
+    document.formEdit.id.value = id;
+    document.formEdit.submit();
+}
+
+function delete_(id, gname) {
+    document.formDelete.id.value = id;
+    if (confirm("Confirm delete guest: \"" + gname + "\"?")) {
+    	document.formDelete.submit();
+    }
+}
+</script>
 
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
@@ -28,7 +51,7 @@ Printer prn = new Printer(out);
             		rs.getString("INVITEDBY"),rs.getString("TABLEID"),rs.getString("GUESTTOTAL"),
             		rs.getString("GUESTVEG"), rs.getString("GUESTMUS"),
             		"<input type='button' onclick='editguest(" + rs.getInt("ID") + ")' value='Edit' />", 
-            		"<input type='button' onclick='delete_(" + rs.getInt("ID") + ")' value='Delete' />");
+            		"<input type='button' onclick='delete_(" + rs.getInt("ID") + ",\"" + rs.getString("NAME") + "\")' value='Delete' />");
         }
     }
 }
