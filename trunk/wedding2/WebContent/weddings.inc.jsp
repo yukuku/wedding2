@@ -17,31 +17,31 @@ if ("activate".equals(action)) {
     session.setAttribute(Constant.Session.activeWedding, Integer.parseInt(request.getParameter("id")));
 } else if ("create".equals(action)) {
     Wedding w = new Wedding(request);
-    int id = db.insert("insert into WEDDING (brideName, groomName, date) values (?, ?, ?)", w.getBrideName(), w.getGroomName(), w.getDate());
+    int id = db.insert("insert into IP_WEDDING (brideName, groomName, date, hotelName) values (?, ?, ?)", w.getBrideName(), w.getGroomName(), w.getDate());
     session.setAttribute(Constant.Session.activeWedding, id);
     
     // add tables
     for (int i = 0; i < Integer.parseInt(request.getParameter("tables")); i++) {
-        db.insert("insert into `TABLE` (weddingID, name, vacancy) values (?, ?, ?)", id, i+1, 10);
+        db.insert("insert into IP_TABLE (weddingID, number, vacancy) values (?, ?, ?)", id, i+1, 10);
     }
 } else if ("delete".equals(action)) {
 	int id = Integer.parseInt(request.getParameter("id"));
 	
 	// del guests
-	db.execute("delete from GUEST where weddingID=?", id);
+	db.execute("delete from IP_GUEST where weddingID=?", id);
 	
 	// del tables
-	db.execute("delete from `TABLE` where weddingID=?", id);
+	db.execute("delete from IP_TABLE where weddingID=?", id);
 	
 	// del wedding
-	db.execute("delete from WEDDING where id=?", id);
+	db.execute("delete from IP_WEDDING where id=?", id);
 }
 
 // active wedding
 {
     Integer id = (Integer)session.getAttribute(Constant.Session.activeWedding);
     if (id != null && id != 0) {
-        ResultSet rs = db.select("select * from WEDDING where id=?", id);
+        ResultSet rs = db.select("select * from IP_WEDDING where id=?", id);
     	if (rs.next()) {
         	pageContext.setAttribute("active", new Wedding(rs));
     	} else {
@@ -99,7 +99,7 @@ function delete_(id) {
     </tr>
     
     <%
-    ResultSet rs = db.select("select * from WEDDING order by date desc");
+    ResultSet rs = db.select("select * from IP_WEDDING order by date desc");
     while (rs.next()) {
         prn.tr(rs.getString("brideName") + " & " + rs.getString("groomName"), rs.getString("date"), "<input type='button' onclick='activate(" + rs.getInt("id") + ")' value='Activate' />", "<input type='button' onclick='delete_(" + rs.getInt("id") + ")' value='Delete' />");
     }
