@@ -37,19 +37,10 @@ if ("activate".equals(action)) {
 	db.execute("delete from IP_WEDDING where id=?", id);
 }
 
-// active wedding
-{
-    Integer id = (Integer)session.getAttribute(Constant.Session.activeWedding);
-    if (id != null && id != 0) {
-        ResultSet rs = db.select("select * from IP_WEDDING where id=?", id);
-    	if (rs.next()) {
-        	pageContext.setAttribute("active", new Wedding(rs));
-    	} else {
-    		session.removeAttribute(Constant.Session.activeWedding);
-    	}
-    }
-}
-
+%>
+<%@include file="activeWedding.inc.jsp" %>
+<%
+pageContext.setAttribute("active", getActiveWedding(db, session));
 %>
 
 <form name="formActivate" method="post">
@@ -83,7 +74,7 @@ function delete_(id) {
 <h2>Active wedding</h2>
 
 <% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
-    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> (${active.date})</p>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> (${active.date} at ${active.hotelName})</p>
 <% } else { %>
     <p>Please activate a wedding from the list below.</p>
 <% } %>

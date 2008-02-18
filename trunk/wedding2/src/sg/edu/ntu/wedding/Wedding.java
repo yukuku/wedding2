@@ -12,6 +12,7 @@ public class Wedding {
     private String groomName;
     private Date date;
     private String hotelName;
+    private int id;
     
     public Wedding() {
     }
@@ -21,6 +22,7 @@ public class Wedding {
         groomName = rs.getString("groomName");
         date = rs.getDate("date");
         hotelName = rs.getString("hotelName");
+        id = rs.getInt("id");
     }
 
     public Wedding(HttpServletRequest req) throws ParseException {
@@ -60,5 +62,9 @@ public class Wedding {
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public int getId() {
+		return id;
 	}    
 }

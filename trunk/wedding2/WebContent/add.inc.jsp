@@ -10,7 +10,7 @@
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
-
+<%@include file="activeWedding.inc.jsp" %>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
@@ -50,16 +50,32 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	if ("add".equals(action)) {
 		Guest g = new Guest(request);
 		int id = db.insert(
-				"insert into GUEST (name, allocated, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-				g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getStatus(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
+				"insert into IP_GUEST (weddingID, name, allocated, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
+				getActiveWedding(db, session).getId(), g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
+		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
+}
+
+if (getActiveWedding(db, session) == null) {
+	pageContext.setAttribute("message", "No active wedding. Please select first");
 }
 %>
 
 <h1>Add/import guests</h1>
 
 <h2>Add guests</h2>
+
+<%
+	if (pageContext.getAttribute("message") != null) {
+%>
+	<div class="message">
+		${message}
+	</div>
+
+<%
+	}
+%>
 
 <form name="form0" method="post">
 	<table class="form">
