@@ -32,7 +32,6 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", })
 </div>
 <div id="main">
 	<% if (moduleOk) { %>
-		<% out.println("including page" + module + ".inc.jsp"); %>
 		<jsp:include page="<%= module + ".inc.jsp" %>"></jsp:include>
 	<% } else { %>
 		<h1>Do not try to hack,  ok? _(^^;)ゞ</h1>
