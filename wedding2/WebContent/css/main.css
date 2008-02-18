@@ -56,3 +56,11 @@ body {
 	padding-right: 6px;
 }
 
+.message {
+	background-color: rgb(255, 156, 221);
+	padding: 3px;
+	border: red 2px solid;
+	margin: 5px 0px;
+	font-weight: bold;
+}
+
