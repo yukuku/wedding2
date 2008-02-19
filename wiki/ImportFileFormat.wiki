@@ -1,11 +1,9 @@
 #Summary FileFormat
 
 = Introduction =
-
 File Format
 
 
 = Details =
-
 Format of the Import CSV File:
 name,allocated,category,invitedBy,status
