@@ -23,7 +23,7 @@ header
 boolean moduleOk = false;
 String module = request.getParameter("module");
 if (module == null) module = "main";
-for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", }) {
+for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "assign", }) {
     if (ok.equals(module)) {
         moduleOk = true;
         break;
