@@ -57,9 +57,6 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	}
 }
 
-if (getActiveWedding(db, session) == null) {
-	pageContext.setAttribute("message", "No active wedding. Please select first");
-}
 %>
 
 <h1>Add/import guests</h1>
@@ -67,14 +64,7 @@ if (getActiveWedding(db, session) == null) {
 <h2>Add guests</h2>
 
 <%
-	if (pageContext.getAttribute("message") != null) {
-%>
-	<div class="message">
-		${message}
-	</div>
-
-<%
-	}
+getAndCheckActiveWedding(db, session, out);
 %>
 
 <form name="form0" method="post">
@@ -140,6 +130,10 @@ if (getActiveWedding(db, session) == null) {
 
 
 <h2>Or, import list of guests from file</h2>
+
+<%
+getAndCheckActiveWedding(db, session, out);
+%>
 
 <form name="form1" method="post" enctype="multipart/form-data">
 	<table class="form">

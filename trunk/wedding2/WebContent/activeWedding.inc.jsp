@@ -17,4 +17,14 @@ public Wedding getActiveWedding(DatabaseConnection db, HttpSession session) thro
     return null;
 }
 
+public Wedding getAndCheckActiveWedding(DatabaseConnection db, HttpSession session, JspWriter out) throws Exception {
+	Wedding w = getActiveWedding(db, session);
+	if (w == null) {
+		out.write("<div class='message'>The active wedding has not been selected. Please select it first.</div>\n");
+		return null;
+	} else {
+		return w;
+	}
+}
+
 %>
