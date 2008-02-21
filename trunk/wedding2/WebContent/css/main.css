@@ -51,6 +51,7 @@ body {
 
 .listview th {
 	background-color: #ddd;
+	text-align: left;
 }
 
 .listview td, .listview th {
