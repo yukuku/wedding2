@@ -1,20 +1,19 @@
 package sg.edu.ntu.wedding;
 
-import java.io.*;
-import java.util.*;
-import yuku.csv.*;
-import sg.edu.ntu.wedding.*;
+import java.io.File;
+import java.util.Scanner;
+import java.util.Vector;
+
+import yuku.csv.CSVFile;
 
 // Version 2 Of Importer
 public class Importer {
 	
-	private static int intGuestId = 1;
 	private static boolean blnValidation;
-	private static CSVFile csvParser = new CSVFile();
 	private static DatabaseConnection dbcConnection = new DatabaseConnection();
 	
 	public static int processFile(int intWeddingId, String strFileName) throws Exception {
-		Vector<Vector<String>> vFileContents = csvParser.read(new File(new Scanner(strFileName).nextLine()));
+		Vector<Vector<String>> vFileContents = CSVFile.read(new File(new Scanner(strFileName).nextLine()));
 
 		blnValidation = false;
 		
@@ -69,11 +68,11 @@ public class Importer {
 				
 				// Validate that Guest Total is always more or at least equal to the sum
 				// of Guest Vegetarian and Guest Muslim
-				Integer intGuestTotal = new Integer(strGuestTotal);
-				Integer intGuestVegetarian = new Integer(strGuestVegetarian);
-				Integer intGuestMuslim = new Integer (strGuestMuslim);
+				int intGuestTotal = new Integer(strGuestTotal);
+				int intGuestVegetarian = new Integer(strGuestVegetarian);
+				int intGuestMuslim = new Integer (strGuestMuslim);
 				
-				if (intGuestTotal.intValue() < (intGuestVegetarian.intValue() + intGuestMuslim.intValue()))
+				if (intGuestTotal < intGuestVegetarian + intGuestMuslim)
 					break;
 			}
 			else {
