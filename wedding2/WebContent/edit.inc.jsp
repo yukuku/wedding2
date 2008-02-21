@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="activeWedding.inc.jsp" %>
+<%
+DatabaseConnection db = DatabaseConnection.getInstance();
+Wedding active = getActiveWedding(db, session); 
+
+%>
 
 <h1>Edit guests</h1>
 
+
+<%
+	if (getAndCheckActiveWedding(db, session, out) != null) {
+%>
+	
 <form name="form0">
 <table class="form">
 
@@ -52,3 +63,8 @@
 
 </table>
 </form>
+
+<%
+	}
+%>
+
