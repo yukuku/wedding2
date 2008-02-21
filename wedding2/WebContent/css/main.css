@@ -30,6 +30,20 @@ body {
 	content: "Debug panel";
 }
 
+#header {
+	height: 60px;
+	width: 100%;
+	clear: both;
+	background-color: rgb(255, 128, 128);
+}
+
+#footer {
+	height: 80px;
+	width: 100%;
+	clear: both;
+	background-color: rgb(128, 128, 255);
+}
+
 .listview {
 	border: 1px grey solid;
 	border-collapse: collapse;

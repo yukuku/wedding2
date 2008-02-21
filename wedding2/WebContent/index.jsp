@@ -13,6 +13,10 @@
 
 <body>
 
+<div id="header">
+header
+</div>
+
 <%
 
 // get page name
@@ -27,6 +31,8 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", })
 }
 
 %>
+
+
 <div id="leftMenu">
 	<%@include file="leftmenu.inc.jsp" %>
 </div>
@@ -38,6 +44,9 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", })
 	<% } %>
 </div>
 
+<div id="footer">
+footer
+</div>
 
 <div id="debugPanel">
 	<%@include file="debug.inc.jsp" %>
