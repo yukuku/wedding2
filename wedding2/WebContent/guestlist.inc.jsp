@@ -32,7 +32,7 @@ function delete_(id, gname) {
 
 function exportAs(suffix) {
 	var selectOpt = document.formSelect.weddingID;
-	window.open("GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value);
+	window.location.href = "GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value;
 }
 </script>
 
@@ -49,7 +49,7 @@ a wedding: </span> <select name="weddingID" onchange="submit()">
 	<option value=""></option>
 	<%
 		{
-			ResultSet rsWedding = db.select("SELECT * FROM IP_WEDDING");
+			ResultSet rsWedding = db.select(Constant.Session.weddingTableQryAll);
 			while (rsWedding.next()) {
 				if (weddingID != null && weddingID.equals(rsWedding.getString("ID"))) {
 					out.println("<option value=\"" + weddingID + "\" selected=\"selected\">" + rsWedding.getString("groomName") + " & "
@@ -90,7 +90,7 @@ a wedding: </span> <select name="weddingID" onchange="submit()">
 		{
 			Integer id = new Integer(weddingID);
 			if (id != 0) {
-				ResultSet rs = db.select("SELECT * FROM IP_GUEST WHERE WEDDINGID=?", id);
+				ResultSet rs = db.select(Constant.Session.guestTableQry, id);
 				while (rs.next()) {
 					prn.tr(rs.getString("NAME"), rs.getString("INVITEDBY"), rs.getString("tableNumber"), rs.getString("GUESTTOTAL"), rs.getString("GUESTVEG"),
 							rs.getString("GUESTMUS"), "<input type='button' onclick='editguest(" + rs.getInt("ID") + ")' value='Edit' />",
