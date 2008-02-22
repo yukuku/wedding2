@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description>Wedding GuestList Export Servlet</description>
+    <display-name>GuestList</display-name>
+    <servlet-name>GuestList</servlet-name>
+    <servlet-class>sg.edu.ntu.wedding.GuestList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GuestList</servlet-name>
+    <url-pattern>/GuestList.xls</url-pattern>
+  </servlet-mapping>
 </web-app>
