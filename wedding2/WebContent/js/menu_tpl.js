@@ -7,7 +7,7 @@ var MENU_POS = [
 	'width': 140,
 	// absolute position of the menu on the page (in pixels)
 	// with centered content use Tigra Menu PRO or Tigra Menu GOLD
-	'block_top': 15,
+	'block_top': 90,
 	'block_left': 20,
 	// offsets between items of the same level (in pixels)
 	'top': 24,
