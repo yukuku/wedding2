@@ -28,10 +28,10 @@ that has been realized:</p>
   <li>
 <div align="left">Support multiple hotels / restaurants book service</div>
   <li>
-<div align="left">Support 2 mode of table assignment 
+<div align="left">Support 2 modes of table assignment 
   (manual mode and auto mode)</div>
   <li>
-<div align="left">Support 2 format of report generation 
+<div align="left">Support 2 formats of report generation 
   (PDF format and Microsoft Excell Sheet format)</div></li></ol>
 <h3 align="left"> Usage Instructions</h3>
 <p align="left"> List of menu entries and their services are 
@@ -79,7 +79,7 @@ the software package to new application server:</p>
   ID)&nbsp;<strong>GOTO</strong> {Appache Tomcat}\webapps\Wedding\mysql\bin 
   and&nbsp;<strong>RUN</strong>  mysqld-nt.exe</div>
   <li>
-<div align="left"><strong>Start up / refresh</strong>Apache Tomcat server</div>
+<div align="left"><strong>Start up / refresh</strong> Apache Tomcat server</div>
   <li>
 <div align="left">The service is accessable via <a 
   href="http://{DomainName}:{PortNumber/Wedding/">http://{DomainName}:{PortNumber/Wedding/</a>  </div></li></ol>
