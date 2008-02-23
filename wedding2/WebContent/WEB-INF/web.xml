@@ -18,5 +18,6 @@
   <servlet-mapping>
     <servlet-name>GuestList</servlet-name>
     <url-pattern>/GuestList.xls</url-pattern>
+    <url-pattern>/GuestList.pdf</url-pattern>
   </servlet-mapping>
 </web-app>
