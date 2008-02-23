@@ -34,8 +34,8 @@ This form will have one dropdown list to choose wedding and grid to show all gue
 By clicking the guest id, the user can go to edit guest information.
 
 Need to-do
- * Deleting guest function
- * Export servlets
+ * Deleting guest function 
+ * Export servlets (done)
  * Editing / Updating Guest: ^Depends on^ Item 2
 
 
