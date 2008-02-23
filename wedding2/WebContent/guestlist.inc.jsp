@@ -7,17 +7,19 @@
 <%@page import="java.sql.ResultSet"%>
 
 
-<h2>test 1 2 3</h2>
+<h1>View Guest List</h1>
 
-<form name="formEdit" action="./?module=edit" method="post"><input
-	type="hidden" name="action" value="edit" /> <input type="hidden"
-	name="id" value="0" /></form>
+<form name="formEdit" action="./?module=edit" method="post">
+<input type="hidden" name="action" value="edit" /> 
+<input type="hidden" name="id" value="0" />
+</form>
 
-<form name="formDelete" method="post"><input type="hidden"
-	name="action" value="delete" /> <input type="hidden" name="id"
-	value="0" /></form>
+<form name="formDelete" method="post">
+<input type="hidden" name="action" value="delete" /> 
+<input type="hidden" name="id" value="0" />
+</form>
 <script type="text/javascript">
-
+<!--
 function editguest(id) {
     document.formEdit.id.value = id;
     document.formEdit.submit();
@@ -34,6 +36,16 @@ function exportAs(suffix) {
 	var selectOpt = document.formSelect.weddingID;
 	window.location.href = "GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value;
 }
+
+function gsort(sortCol) {
+	var selectOpt = document.formSelect.weddingID;
+	var weddingId = selectOpt.options[selectOpt.selectedIndex].value;
+//	if (weddingId != null and weddingId != 0) {
+	document.formSelect.sortAs.value = sortCol;
+	document.formSelect.submit();
+//	}
+}
+-->
 </script>
 
 <%
@@ -44,8 +56,9 @@ function exportAs(suffix) {
 		weddingID = "0";
 %>
 
-<form name="formSelect" method="post"><span>Please select
-a wedding: </span> <select name="weddingID" onchange="submit()">
+<form name="formSelect" method="post"><span>Please select a wedding: </span> 
+<input type="hidden" name="sortAs" value="" />
+<select name="weddingID" onchange="submit()">
 	<option value=""></option>
 	<%
 		{
@@ -77,20 +90,23 @@ a wedding: </span> <select name="weddingID" onchange="submit()">
 %>
 <table class="listview">
 	<tr>
-		<th>Guest Title</th>
-		<th>Invited By</th>
-		<th>Table ID</th>
-		<th>Guest Number</th>
-		<th>Vegetarians</th>
-		<th>Muslims</th>
+		<th onclick="gsort('NAME')" class="sortable">Guest Title</th>
+		<th  onclick="gsort('INVITEDBY')" class="sortable">Invited By</th>
+		<th  onclick="gsort('TABLENUMBER')" class="sortable">Table ID</th>
+		<th  onclick="gsort('GUESTTOTAL')"  class="sortable">Guest Number</th>
+		<th  onclick="gsort('GUESTVEG')" class="sortable">Vegetarians</th>
+		<th onclick="gsort('GUESTMUS')" class="sortable">Muslims</th>
 		<th>Edit Guest</th>
 		<th>Delete Guest</th>
 	</tr>
 	<%
 		{
 			Integer id = new Integer(weddingID);
+			String sortAs = request.getParameter("sortAs");
+			String sortOdr = "  ";
+			if (sortAs != null && sortAs != "") sortOdr = sortOdr + "Order By " + sortAs;
 			if (id != 0) {
-				ResultSet rs = db.select(Constant.Session.guestTableQry, id);
+				ResultSet rs = db.select(Constant.Session.guestTableQry + sortOdr, id);
 				while (rs.next()) {
 					prn.tr(rs.getString("NAME"), rs.getString("INVITEDBY"), rs.getString("tableNumber"), rs.getString("GUESTTOTAL"), rs.getString("GUESTVEG"),
 							rs.getString("GUESTMUS"), "<input type='button' onclick='editguest(" + rs.getInt("ID") + ")' value='Edit' />",
