@@ -40,7 +40,7 @@ function exportAs(suffix) {
 function gsort(sortCol) {
 	var selectOpt = document.formSelect.weddingID;
 	var weddingId = selectOpt.options[selectOpt.selectedIndex].value;
-	if (weddingId != null and weddingId != 0) {
+	if (weddingId > 0) {
 	document.formSelect.sortAs.value = sortCol;
 	document.formSelect.submit();
 	}
