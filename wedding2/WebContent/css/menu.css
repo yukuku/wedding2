@@ -23,12 +23,14 @@
 .m0l0oout {
 	text-decoration : none;
 	border : 1px solid #FFFFFF;
-	background: #4682B4;
+	/*background: #4682B4;*/
+	background: f28bbd;
 }
 .m0l0oover {
 	text-decoration : none;
 	border : 1px solid #FFFFFF;
-	background: #5AA7E5;
+	/*background: #5AA7E5;*/
+	background: ffffff;
 }
 
 /* level 1 inner */
@@ -40,7 +42,7 @@
 }
 .m0l1iover {
 	font: bold 12px Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
-	text-decoration : none;
+	text-decoration : bold;
 	padding: 4px;
 	color: #000000;
 }
