@@ -52,6 +52,28 @@ public class DatabaseConnection {
         }
     }
 
+    public boolean update(Guest g){
+    	checkConnection();
+        try {
+        	java.sql.Statement st = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
+        	String sql = "SELECT * FROM IP_GUEST WHERE ID = " + g.getId();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){            	
+                rs.updateString("NAME", g.getName());
+                rs.updateString("CATEGORY", g.getCategory());
+                rs.updateString("INVITEDBY",g.getInvitedBy());
+                rs.updateInt("GUESTTOTAL",g.getGuestTotal());
+                rs.updateInt("GUESTMUS",g.getGuestMus());
+                rs.updateInt("GUESTVEG",g.getGuestVeg());
+                rs.updateRow();
+            }
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }  
+    }
+    
     public int insert(String sql, Object... params) {
         checkConnection();
         try {
