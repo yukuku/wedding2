@@ -5,7 +5,6 @@
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
-
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 Printer prn = new Printer(out);
