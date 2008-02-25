@@ -6,7 +6,6 @@
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
 
-
 <h1>View Guest List</h1>
 
 <form name="formEdit" action="./?module=edit" method="post">
@@ -116,4 +115,3 @@ function gsort(sortCol) {
 		}
 	%>
 </table>
-
