@@ -20,4 +20,15 @@
     <url-pattern>/GuestList.xls</url-pattern>
     <url-pattern>/GuestList.pdf</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description>Wedding Guest Importer Servlet</description>
+    <display-name>Importer</display-name>
+    <servlet-name>Importer</servlet-name>
+    <servlet-class>sg.edu.ntu.wedding.Importer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Importer</servlet-name>
+    <url-pattern>/Importer</url-pattern>
+  </servlet-mapping>
 </web-app>
