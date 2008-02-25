@@ -12,9 +12,8 @@
 
 
 <body>
-
 <div id="header">
-header
+<img src="images/banner.jpg"/>
 </div>
 
 <%
