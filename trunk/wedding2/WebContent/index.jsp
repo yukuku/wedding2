@@ -41,10 +41,9 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "a
 	<% } else { %>
 		<h1>Do not try to hack,  ok? _(^^;)ゞ</h1>
 	<% } %>
-</div>
-
 <div id="footer">
-footer
+<%@include file="footer.inc.jsp" %>
+</div>
 </div>
 
 <div id="debugPanel">
