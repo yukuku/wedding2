@@ -1,7 +1,7 @@
 @CHARSET "utf-8";
 
 body {
-	background-color: #dff;
+	background-color: #f28bbd;
 	font-family: sans-serif;
 	font-size: 10pt;
 	font-weight: normal;
@@ -38,10 +38,10 @@ body {
 }
 
 #footer {
-	height: 80px;
+	height: 20px;
 	width: 100%;
 	clear: both;
-	background-color: rgb(128, 128, 255);
+	background-color: #f28bbd;
 }
 
 .listview {
