@@ -8,6 +8,7 @@
 <%@page import="org.apache.commons.fileupload.util.Streams"%>
 <%@page import="java.util.Vector"%>
 <%@page import="sg.edu.ntu.wedding.Parse"%>
+<%@page import="sg.edu.ntu.wedding.Importer"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
@@ -33,14 +34,16 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	        }
 	    } else {
 	    	if ("file".equals(name)) {
-	    		BufferedReader in = new BufferedReader(new InputStreamReader(stream, "utf8"));
-	    		while (true) {
-	    			String line = in.readLine();
-	    			if (line == null) break;
-	    			if (line.trim().length() > 0) {
-	    				lines.add(line);
-	    			}
+	    		//BufferedReader in = new BufferedReader(new InputStreamReader(stream, "utf8"));
+	    		
+	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"));
+	    		if (intProcessedId != 1) {
+	    			out.write("There are errors with the file");
 	    		}
+	    		else {
+	    			out.write("File uploaded successfully");
+	    		}
+	    		//pageContext.setAttribute("message", "The file (" + "file".toString() + ") has been added");
 	    	}
 	    	// TODO process import
 	    }
@@ -135,7 +138,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	<table class="form">
 		<tr>
 			<td>Data File</td>
-			<td><input type="file" name="file" required="required" size="60" /></td>
+			<td><input type="file" name="file" required="required" size="60"/></td>
 		</tr>
 		<tr>
 			<td>AutoAssign</td>
