@@ -9,9 +9,9 @@
 <%@page import="java.util.Vector"%>
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="sg.edu.ntu.wedding.Importer"%>
-<%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
@@ -38,14 +38,12 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	    		
 	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"));
 	    		if (intProcessedId != 1) {
-	    			out.write("There are errors with the file");
+	    			pageContext.setAttribute("message", "There are errors with the file");
 	    		}
 	    		else {
-	    			out.write("File uploaded successfully");
+	    			pageContext.setAttribute("message", "File uploaded successfully");
 	    		}
-	    		//pageContext.setAttribute("message", "The file (" + "file".toString() + ") has been added");
 	    	}
-	    	// TODO process import
 	    }
 	}
 } else {
@@ -56,7 +54,6 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				"insert into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
 				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
-		out.write("id of guest: " + id);
 		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
 }
@@ -70,6 +67,9 @@ if (ServletFileUpload.isMultipartContent(request)) {
 <%
 	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
+<c:if test="${not empty message}">
+<div class="message">${message}</div>
+</c:if>
 
 <form name="form0" method="post">
 	<table class="form">
