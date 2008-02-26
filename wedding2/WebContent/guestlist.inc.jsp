@@ -111,7 +111,7 @@ function gsort(sortCol) {
 			if (id != 0) {
 				ResultSet rs = db.select(Constant.Session.guestTableQry + sortOdr, id);
 				while (rs.next()) {
-					prn.tr(rs.getString("NAME"), rs.getString("INVITEDBY"), rs.getString("tableNumber"), rs.getString("GUESTTOTAL"), rs.getString("GUESTVEG"),
+					prn.tr(rs.getString("NAME"), rs.getString("INVITEDBY"), "0".equals(rs.getString("tableNumber"))?"U.A.":rs.getString("tableNumber"), rs.getString("GUESTTOTAL"), rs.getString("GUESTVEG"),
 							rs.getString("GUESTMUS"), "<input type='button' onclick='editguest(" + rs.getInt("ID") + ")' value='Edit' />",
 							"<input type='button' onclick='delete_(" + rs.getInt("ID") + ",\"" + rs.getString("NAME") + "\")' value='Delete' />");
 				}

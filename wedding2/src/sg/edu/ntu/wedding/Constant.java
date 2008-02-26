@@ -6,6 +6,6 @@ public class Constant {
         public static final String guestTableQry = "SELECT * FROM IP_GUEST WHERE WEDDINGID=?";
         public static final String guestTableQry2 = "SELECT * FROM IP_GUEST WHERE ID=?";
         public static final String weddingTableQryAll = "SELECT * FROM IP_WEDDING";
-        public static final String guestTableSqs = "Guest Title, Invited By, Table ID, Guest Number, Vegetarians, Muslims";
+        public static final String guestTableSqs = "Guest Title,Invited By,Table ID,Guest Number,Vegetarians,Muslims";
     }
 }
