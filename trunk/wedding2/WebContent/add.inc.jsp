@@ -56,6 +56,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				"insert into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
 				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
+		out.write("id of guest: " + id);
 		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
 }
