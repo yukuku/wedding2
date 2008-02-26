@@ -37,13 +37,25 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	    } else {
 	    	if ("file".equals(name)) {
 	    		//BufferedReader in = new BufferedReader(new InputStreamReader(stream, "utf8"));
-	    		
-	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"));
-	    		if (intProcessedId != 1) {
-	    			pageContext.setAttribute("message", "There are errors with the file");
+	    		int intAutoAssign;
+	    		out.write("Auto assign option: " + auto);
+	    		if (auto == true)
+	    			intAutoAssign = 1;
+	    		else
+	    			intAutoAssign = 0;
+	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"), intAutoAssign, ActiveWedding.getActiveWedding(db, session));
+	    		if (intProcessedId < 0) {
+	    			pageContext.setAttribute("message", "There are errors with the file. File not uploaded.");
 	    		}
 	    		else {
-	    			pageContext.setAttribute("message", "File uploaded successfully");
+	    			if (intAutoAssign == 0)
+	    				pageContext.setAttribute("message", "File uploaded successfully");
+	    			else {
+	    				if (intProcessedId == 1)
+	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign completed");
+	    				else
+	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign incomplete");
+	    			}
 	    		}
 	    	}
 	    }
@@ -56,7 +68,11 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				"insert into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
 				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
-		String strAutoAssign = request.getParameter("auto").toString();
+		String strAutoAssign = request.getParameter("auto");
+		if (strAutoAssign == null)
+			strAutoAssign = "0";
+		else
+			strAutoAssign = "1";
 		out.write("Auto assign option: " + strAutoAssign);
 		if (strAutoAssign.compareTo("1") == 0) {
 			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus(), ActiveWedding.getActiveWedding(db, session));
@@ -152,12 +168,12 @@ if (ServletFileUpload.isMultipartContent(request)) {
 <form name="form1" method="post" enctype="multipart/form-data">
 	<table class="form">
 		<tr>
-			<td>Data File</td>
-			<td><input type="file" name="file" required="required" size="60"/></td>
-		</tr>
-		<tr>
 			<td>AutoAssign</td>
 			<td><input type="checkbox" name="auto" value="1"/>Let the system AutoAssign new groups</td>
+		</tr>
+		<tr>
+			<td>Data File</td>
+			<td><input type="file" name="file" required="required" size="60"/></td>
 		</tr>
 		<tr>
 			<td><input type="hidden" name="action" value="import" /></td>
