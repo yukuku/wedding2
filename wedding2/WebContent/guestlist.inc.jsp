@@ -6,39 +6,52 @@
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
 
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
+
 <h1>View Guest List</h1>
+
+<%
+//begin of if activeWedding;
+DatabaseConnection db = DatabaseConnection.getInstance();
+	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
+%>
 
 <form name="formEdit" action="./?module=edit" method="post">
 <input type="hidden" name="action" value="edit" /> 
 <input type="hidden" name="id" value="0" />
+<input type="hidden" name="weddingID" value="0" />
 </form>
 
 <form name="formDelete" method="post">
 <input type="hidden" name="action" value="delete" /> 
 <input type="hidden" name="id" value="0" />
+<input type="hidden" name="weddingID" value="0" />
 </form>
 <script type="text/javascript">
 <!--
 function editguest(id) {
+	var weddingId = document.formSelect.weddingID.value;
     document.formEdit.id.value = id;
+    document.formEdit.weddingID.value = weddingId;
     document.formEdit.submit();
 }
 
 function delete_(id, gname) {
+	var weddingId = document.formSelect.weddingID.value;
     document.formDelete.id.value = id;
+    document.formDelete.weddingID.value = weddingId;
     if (confirm("Confirm delete guest: \"" + gname + "\"?")) {
     	document.formDelete.submit();
     }
 }
 
 function exportAs(suffix) {
-	var selectOpt = document.formSelect.weddingID;
-	window.location.href = "GuestList." + suffix + "?module=export&id=" + selectOpt.options[selectOpt.selectedIndex].value;
+	var weddingId = document.formSelect.weddingID.value;
+	window.location.href = "GuestList." + suffix + "?module=export&id=" + weddingId;
 }
 
 function gsort(sortCol) {
-	var selectOpt = document.formSelect.weddingID;
-	var weddingId = selectOpt.options[selectOpt.selectedIndex].value;
+	var weddingId = document.formSelect.weddingID.value;
 	if (weddingId > 0) {
 	document.formSelect.sortAs.value = sortCol;
 	document.formSelect.submit();
@@ -48,34 +61,17 @@ function gsort(sortCol) {
 </script>
 
 <%
-	DatabaseConnection db = DatabaseConnection.getInstance();
 	Printer prn = new Printer(out);
-	String weddingID = request.getParameter("weddingID");
+	String weddingID = session.getAttribute(Constant.Session.activeWedding).toString();
 	if (weddingID == null || weddingID == "")
 		weddingID = "0";
 %>
 
-<form name="formSelect" method="post"><span>Please select a wedding: </span> 
+<form name="formSelect" method="post">
+<span>Please select a wedding: </span> 
 <input type="hidden" name="sortAs" value="" />
-<select name="weddingID" onchange="submit()">
-	<option value=""></option>
-	<%
-		{
-			ResultSet rsWedding = db.select(Constant.Session.weddingTableQryAll);
-			while (rsWedding.next()) {
-				if (weddingID != null && weddingID.equals(rsWedding.getString("ID"))) {
-					out.println("<option value=\"" + weddingID + "\" selected=\"selected\">" + rsWedding.getString("groomName") + " & "
-							+ rsWedding.getString("brideName") + " (" + rsWedding.getString("Date") + " at " + rsWedding.getString("HotelName") + ")"
-							+ "</option>");
-				} else {
-					out.println("<option value=\"" + rsWedding.getString("ID") + "\">" + rsWedding.getString("groomName") + " & "
-							+ rsWedding.getString("brideName") + " (" + rsWedding.getString("Date") + " at " + rsWedding.getString("HotelName") + ")"
-							+ "</option>");
-				}
-			}
-		}
-	%>
-</select></form>
+<input type="hidden" name="weddingID" value="<%=session.getAttribute(Constant.Session.activeWedding).toString()%>" />
+</form>
 
 <%
 	if (!"0".equals(weddingID)) {
@@ -115,3 +111,9 @@ function gsort(sortCol) {
 		}
 	%>
 </table>
+
+<%
+//end of if activeWedding;
+	}
+%>
+

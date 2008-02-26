@@ -10,6 +10,7 @@
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
@@ -58,7 +59,6 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
 %>
 
-<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <h1>Add/import guests</h1>
 
 <h2>Add guests</h2>
