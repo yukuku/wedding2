@@ -64,7 +64,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 <h2>Add guests</h2>
 
 <%
-getAndCheckActiveWedding(db, session, out);
+	if (getAndCheckActiveWedding(db, session, out) != null) {
 %>
 
 <form name="form0" method="post">
@@ -131,10 +131,6 @@ getAndCheckActiveWedding(db, session, out);
 
 <h2>Or, import list of guests from file</h2>
 
-<%
-getAndCheckActiveWedding(db, session, out);
-%>
-
 <form name="form1" method="post" enctype="multipart/form-data">
 	<table class="form">
 		<tr>
@@ -151,3 +147,7 @@ getAndCheckActiveWedding(db, session, out);
 		</tr>
 	</table>
 </form>
+
+<%
+	}
+%>
