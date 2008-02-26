@@ -1,6 +1,8 @@
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="sg.edu.ntu.wedding.Printer"%>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 Wedding active = ActiveWedding.getActiveWedding(db, session);
@@ -14,6 +16,7 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 	int nGroupsFull = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=guestTotal", active.getId());
 	int nGroupsPartial = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended>0 and attended<guestTotal", active.getId());
 	int nGroupsNone = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=0", active.getId());
+	ResultSet rs= db.select("select tableNumber,sum(attended) as total from IP_GUEST where weddingID=? and tableNumber<> 0 group by tableNumber",active.getId());
 %>
 
 <h1>${active.brideName} &amp; ${active.groomName}'s Wedding</h1>
@@ -54,6 +57,21 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 		<th>Unassigned tables</th>
 		<td><%= nTables - nTablesUsed %> tables</td>
 	</tr>
+</table>
+
+<h2>Attended Tables</h2>
+
+<table class="listview">
+	<tr>
+		<th onclick="gsort('tableNumber')" class="sortable">Table Number</th>
+		<th  onclick="gsort('total')" class="sortable">Total Guests</th>		
+	</tr>
+<%
+	Printer prn = new Printer(out);
+	while (rs.next()) {
+		prn.tr(rs.getString("tableNumber"), rs.getString("total"));
+	}
+%>
 </table>
 
 <h2>Guests</h2>
