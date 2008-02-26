@@ -106,7 +106,7 @@ public class GuestList extends javax.servlet.http.HttpServlet implements
 			while (rsWedding.next() == true) {
 				pdfPTable.addCell(rsWedding.getString("NAME"));
 				pdfPTable.addCell(rsWedding.getString("INVITEDBY"));
-				pdfPTable.addCell(rsWedding.getString("tableNumber"));
+				pdfPTable.addCell("0".equals(rsWedding.getString("tableNumber"))?"U.A.":rsWedding.getString("tableNumber"));
 				pdfPTable.addCell(rsWedding.getString("GUESTTOTAL"));
 				pdfPTable.addCell(rsWedding.getString("GUESTVEG"));
 				pdfPTable.addCell(rsWedding.getString("GUESTMUS"));
