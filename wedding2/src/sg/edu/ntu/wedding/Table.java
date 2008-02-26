@@ -29,7 +29,7 @@ public class Table {
 				if (g.getGuestMus() > 0) mus = true;
 			}
 		}
-		if (veg && mus) {
+		if ((veg && mus) || (!veg && !mus)) {
 			type = Type.MIXED;
 		} else if (veg && !mus) {
 			type = Type.VEG;
