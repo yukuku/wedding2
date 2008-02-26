@@ -3,5 +3,9 @@
 
 Guest Attendence Page
 1. Should allow to update attended after assigning table??
+
+Table Assign
 2. Should show Veg,Mus,Non instead of mixed??
+
+Manage Weddings
 3. The message for Manage weddings..
