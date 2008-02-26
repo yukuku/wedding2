@@ -38,6 +38,21 @@ public class DatabaseConnection {
         }
     }
 
+    public int fetchInt(String sql, Object... params) {
+        checkConnection();
+        try {
+            ResultSet rs = select(sql, params);
+            if (rs.next()) {
+            	return rs.getInt(1);
+            } else {
+            	return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public boolean execute(String sql, Object... params) {
         checkConnection();
         try {

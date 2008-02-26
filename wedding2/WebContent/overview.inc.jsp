@@ -7,6 +7,14 @@ Wedding active = ActiveWedding.getActiveWedding(db, session);
 pageContext.setAttribute("active", active);
 
 if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
+	int nTables = db.fetchInt("select count(*) as c from IP_TABLE where weddingId=?", active.getId());
+	int nTablesUsed = db.fetchInt("select count(*) as c from IP_TABLE where weddingId=? and exists (select * from IP_GUEST where weddingId=? and tableNumber=number)", active.getId(), active.getId());
+	int nGuests = db.fetchInt("select sum(guestTotal) as c from IP_GUEST where weddingId=?", active.getId());
+	int nGroups = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=?", active.getId());
+	int nGroupsInvited = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and status=?", active.getId(), "invited");
+	int nGroupsAttended = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and status=?", active.getId(), "attended");
+	int nGroupsAbsent = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and status=?", active.getId(), "absent");
+	int nGroupsCancelled = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and status=?", active.getId(), "cancelled");
 %>
 
 <h1>${active.brideName} &amp; ${active.groomName}'s Wedding</h1>
@@ -16,15 +24,19 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 <table class="listview">
 	<tr>
 		<th>Bride Name</th>
-		<td></td>
+		<td>${active.brideName}</td>
 	</tr>
 	<tr>
 		<th>Groom Name</th>
-		<td></td>
+		<td>${active.groomName}</td>
 	</tr>
 	<tr>
-		<th>Unassigned tables</th>
-		<td></td>
+		<th>Hotel Name</th>
+		<td>${active.hotelName}</td>
+	</tr>
+	<tr>
+		<th>Date</th>
+		<td>${active.date}</td>
 	</tr>
 </table>
 
@@ -33,15 +45,15 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 <table class="listview">
 	<tr>
 		<th>Number of tables</th>
-		<td></td>
+		<td><%= nTables %></td>
 	</tr>
 	<tr>
 		<th>Assigned tables</th>
-		<td></td>
+		<td><%= nTablesUsed %></td>
 	</tr>
 	<tr>
 		<th>Unassigned tables</th>
-		<td></td>
+		<td><%= nTables - nTablesUsed %></td>
 	</tr>
 </table>
 
@@ -50,27 +62,27 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 <table class="listview">
 	<tr>
 		<th>Total number of guests</th>
-		<td></td>
+		<td><%= nGuests %></td>
 	</tr>
 	<tr>
 		<th>Number of guest groups</th>
-		<td></td>
+		<td><%= nGroups %></td>
 	</tr>
 	<tr>
 		<th>- Invited groups</th>
-		<td></td>
+		<td><%= nGroupsInvited %></td>
 	</tr>
 	<tr>
 		<th>- Attended groups</th>
-		<td></td>
+		<td><%= nGroupsAttended %></td>
 	</tr>
 	<tr>
 		<th>- Absent groups</th>
-		<td></td>
+		<td><%= nGroupsAbsent %></td>
 	</tr>
 	<tr>
 		<th>- Cancelled groups</th>
-		<td></td>
+		<td><%= nGroupsCancelled %></td>
 	</tr>
 </table>
 

@@ -3,7 +3,7 @@
 <p align="left">The Wedding Dinner Planning System is a 
 web-based application, which is used by agencies to book restaurant dinners and 
 arranging guest seating plan for their customers. The application was built by 
-using JAVA Servlet / JSP technology and running on Apache Tomcat Web Server and 
+using Java Servlet / JSP technology and running on Apache Tomcat Web Server and 
 MySQL Database Management System.</p>
 <p align="left">Below shows a list of basic functionalities 
 that has been realized:</p>
@@ -32,7 +32,7 @@ that has been realized:</p>
   (manual mode and auto mode)</div>
   <li>
 <div align="left">Support 2 formats of report generation 
-  (PDF format and Microsoft Excell Sheet format)</div></li></ol>
+  (PDF format and Microsoft Excel Sheet format)</div></li></ol>
 <h3 align="left"> Usage Instructions</h3>
 <p align="left"> List of menu entries and their services are 
  shown below:</p>
@@ -45,16 +45,13 @@ that has been realized:</p>
   Weddings</a> - Wedding management page</div>
   <li>
 <div align="left"><a href="./?module=overview">Overview</a> 
-  - Overview page</div>
+  - Overview about the wedding</div>
   <li>
 <div align="left"><a href="./?module=add">Add/import 
   guests</a> - Guest management page</div>
   <li>
-<div align="left"><a href="./?module=edit">Edit guests</a> 
-  - Guest updating page</div>
-  <li>
 <div align="left"><a href="./?module=guestlist">Guest 
-  List</a> - Guest status page</div>
+  List</a> - Guest status and updating page</div>
   <li>
 <div align="left"><a href="./?module=assign">Table 
   assignments</a> - Table allocation page (manual)</div>
@@ -85,7 +82,7 @@ the software package to new application server:</p>
   href="http://{DomainName}:{PortNumber/Wedding/">http://{DomainName}:{PortNumber/Wedding/</a>  </div></li></ol>
 <h3 align="left">Source Code of the Application</h3>
 <p align="left"><a href="./CI6111A1.zip">Source Code</a>  for the application is 
-downloadable from <a href="./CI6111A1.zip" >HERE</a>  .</p>
+downloadable <a href="./CI6111A1.zip" >HERE</a>  .</p>
 <h3 align="left"> Team Members</h3>
 <ul>
   <li>
@@ -95,5 +92,4 @@ downloadable from <a href="./CI6111A1.zip" >HERE</a>  .</p>
   <li>
 <div align="left">RANDY SUGIANTO (Yuku)</div>
   <li>
-<div align="left">XU SHILEI 
-(Sile)<br>  </div></li></ul>
+<div align="left">XU SHILEI (Sile)  </div></li></ul>
