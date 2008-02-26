@@ -30,7 +30,7 @@ public class Importer {
 				
 				// Validate Category
 				String strCategory = vFileContent.elementAt(1).trim();
-				if (strCategory.compareTo("relative") != 0 && strCategory.compareTo("colleague") != 0 && strCategory.compareTo("friend") != 0)
+				if (strCategory.compareTo("relative") != 0 && strCategory.compareTo("collague") != 0 && strCategory.compareTo("friend") != 0)
 					return 3;
 				
 				// Validate InvitedBy
@@ -72,10 +72,8 @@ public class Importer {
 		if (blnValidation) {
 			// Prepare for Import only if all rows are validated correctly
 			for (Vector<String> vFileContent : vFileContents) {
-				int intGuestId = 8;
-				dbcConnection.insert("Insert Into IP_Guest (id, weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", 
-				intGuestId, intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), "invited", vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
-				intGuestId ++;
+				dbcConnection.insert("Insert Into IP_Guest (weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
+				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), "invited", vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
 			}
 			return 1;
 		}
