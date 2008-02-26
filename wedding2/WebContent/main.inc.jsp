@@ -3,7 +3,7 @@
 <p align="left">The Wedding Dinner Planning System is a 
 web-based application, which is used by agencies to book restaurant dinners and 
 arranging guest seating plan for their customers. The application was built by 
-using Java Servlet / JSP technology and running on Apache Tomcat Web Server and 
+using JAVA Servlet / JSP technology and running on Apache Tomcat Web Server and 
 MySQL Database Management System.</p>
 <p align="left">Below shows a list of basic functionalities 
 that has been realized:</p>
@@ -32,7 +32,7 @@ that has been realized:</p>
   (manual mode and auto mode)</div>
   <li>
 <div align="left">Support 2 formats of report generation 
-  (PDF format and Microsoft Excel Sheet format)</div></li></ol>
+  (PDF format and Microsoft Excell Sheet format)</div></li></ol>
 <h3 align="left"> Usage Instructions</h3>
 <p align="left"> List of menu entries and their services are 
  shown below:</p>
@@ -42,29 +42,31 @@ that has been realized:</p>
   Introduction page to the application</div>
   <li>
 <div align="left"><a href="./?module=weddings">Manage 
-  Weddings</a> - Wedding management page</div>
+  Weddings</a> - 
+  Wedding management page (list / activate&nbsp;current wedding, add new wedding)</div>
   <li>
-<div align="left"><a href="./?module=overview">Overview</a> 
-  - Overview about the wedding</div>
+<div align="left"><a href="./?module=overview">Overview</a> - 
+  Overview of activated wedding information (wedding and its table 
+  / guest statistics)</div>
   <li>
-<div align="left"><a href="./?module=add">Add/import 
-  guests</a> - Guest management page</div>
+<div align="left"><a href="./?module=add">Add/ Import 
+  Guests</a> - 
+  Guest management page (add guest via single / batch mode)</div>
+  <li>
+<div align="left">Edit Guest (hidden page)&nbsp;- Guest updating page</div>
   <li>
 <div align="left"><a href="./?module=guestlist">Guest 
-  List</a> - Guest status and updating page</div>
+  List</a> - Guest status page</div>
   <li>
 <div align="left"><a href="./?module=assign">Table 
-  assignments</a> - Table allocation page (manual)</div>
+  Assignments</a> - Table allocation page (manual)</div>
   <li>
 <div align="left"><a 
-  href="./?module=auto">AutoAssign(tm)</a> - Table allocation page (auto)</div>
+  href="./?module=auto">Auto Assignments (tm)</a> - Table allocation page (auto)</div>
   <li>
 <div align="left"><a 
-  href="./?module=attendance">Attendance</a> - Attendance tracking page</div>
-  <li>
-<div align="left"><a href="./?module=report">Reports</a> - 
-  ?? (t.b.c.)</div></li></ul>
-  <h3 align="left"> Installation Instruction</h3>
+  href="./?module=attendance">Guest Attendance</a> - Attendance tracking page</div></li></ul>
+<h3 align="left"> Installation Instruction</h3>
 <p align="left">Please follow below instructions to install 
 the software package to new application server:</p>
 <ol>
@@ -76,13 +78,13 @@ the software package to new application server:</p>
   ID)&nbsp;<strong>GOTO</strong> {Appache Tomcat}\webapps\Wedding\mysql\bin 
   and&nbsp;<strong>RUN</strong>  mysqld-nt.exe</div>
   <li>
-<div align="left"><strong>Start up / refresh</strong> Apache Tomcat server</div>
+<div align="left"><strong>Start up / refresh</strong>Apache Tomcat server</div>
   <li>
 <div align="left">The service is accessable via <a 
   href="http://{DomainName}:{PortNumber/Wedding/">http://{DomainName}:{PortNumber/Wedding/</a>  </div></li></ol>
 <h3 align="left">Source Code of the Application</h3>
 <p align="left"><a href="./CI6111A1.zip">Source Code</a>  for the application is 
-downloadable <a href="./CI6111A1.zip" >HERE</a>  .</p>
+downloadable from <a href="./CI6111A1.zip" >HERE</a>  .</p>
 <h3 align="left"> Team Members</h3>
 <ul>
   <li>
@@ -92,4 +94,6 @@ downloadable <a href="./CI6111A1.zip" >HERE</a>  .</p>
   <li>
 <div align="left">RANDY SUGIANTO (Yuku)</div>
   <li>
-<div align="left">XU SHILEI (Sile)  </div></li></ul>
+<div align="left">XU SHILEI 
+(Sile)<br>  </div></li></ul>
+
