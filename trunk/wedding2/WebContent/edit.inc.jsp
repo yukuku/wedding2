@@ -6,21 +6,16 @@
 
 <h1>Edit guests</h1>
 
-<form name="formGuestList" action="./?module=guestlist" method="post"></form>
+<form name="formGuestList" action="./?module=guestlist" method="post">
+<input type="hidden" name="weddingID" value="0" />
+</form>
 
 <%         
 		int id= Integer.parseInt(request.getParameter("id"));		
 	    DatabaseConnection db = DatabaseConnection.getInstance();
         ResultSet rs= db.select("SELECT * FROM IP_GUEST WHERE ID=?",id);
         rs.next();
-        Guest g = new Guest();
-        g.setId(id);
-        g.setName(rs.getString("Name")) ;  
-        g.setCategory(rs.getString("Category"));
-       	g.setInvitedBy(rs.getString("InvitedBy"));
-        g.setGuestTotal(java.lang.Integer.parseInt(rs.getString("GuestTotal")));
-       	g.setGuestMus(java.lang.Integer.parseInt(rs.getString("GuestMus")));
-	    g.setGuestVeg(java.lang.Integer.parseInt(rs.getString("GuestVeg")));  
+        Guest g = new Guest(rs);
         pageContext.setAttribute("g", g);
 %>
 
@@ -31,6 +26,7 @@
 			boolean b=db.update(g);
 			if (b){
 				out.println("<SCRIPT LANGUAGE='JavaScript'>");
+				out.println("document.formGuestList.weddingID.value=" + String.valueOf(g.getweddingID()));
 				out.println("document.formGuestList.submit()");
 				out.println("</SCRIPT>");				
 			}else{
@@ -113,6 +109,7 @@
     <tr>
         <td><input type="hidden" name="action" value="submit" />
         	<input name="id" type="hidden" id="id" value="${g.id}" />
+        	<input name="weddingID" type="hidden" value="${g.weddingID}"/>
         </td>
         <td><input type="submit" value="Edit"/></td>
     <tr>   
