@@ -10,7 +10,7 @@ public class Guest {
 	private int tableNumber;
 	private String category;
 	private String invitedBy;
-	private String status;
+	private int attended;
 	private int guestTotal;
 	private int guestVeg;
 	private int guestMus;
@@ -25,7 +25,7 @@ public class Guest {
         tableNumber = rs.getInt("tableNumber");
         category = rs.getString("category");
         invitedBy = rs.getString("invitedBy");
-        status = rs.getString("status");
+        attended = rs.getInt("attended");
         guestTotal = rs.getInt("guestTotal");
         guestVeg = rs.getInt("guestVeg");
         guestMus = rs.getInt("guestMus");
@@ -38,7 +38,7 @@ public class Guest {
         tableNumber = Parse.toInt(req.getParameter("tableNumber"));
         category = req.getParameter("category");
         invitedBy = req.getParameter("invitedBy");
-        status = req.getParameter("status");
+        attended = Parse.toInt(req.getParameter("attended"));
         guestTotal = Parse.toInt(req.getParameter("guestTotal"));
         guestVeg = Parse.toInt(req.getParameter("guestVeg"));
         guestMus = Parse.toInt(req.getParameter("guestMus"));    
@@ -92,12 +92,12 @@ public class Guest {
 		this.invitedBy = invitedBy;
 	}
 
-	public String getStatus() {
-		return status;
+	public int getAttended() {
+		return attended;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAttended(int attended) {
+		this.attended = attended;
 	}
 
 	public int getGuestTotal() {
