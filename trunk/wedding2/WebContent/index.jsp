@@ -12,6 +12,7 @@ response.setHeader("Expires", "Tue, 26 Feb 2008 00:00:00 GMT");
 <title>The Wedding Dinner Planner</title>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
+<link rel="stylesheet" type="text/css" href="js/webforms2.css" />
 <script type="text/javascript" src="js/webforms2.js"></script>
 </head>
 
