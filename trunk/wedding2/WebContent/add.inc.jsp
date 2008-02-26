@@ -12,6 +12,8 @@
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="sg.edu.ntu.wedding.AutoAssign"%>
+<%@page import="java.io.BufferedReader"%>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
@@ -54,6 +56,17 @@ if (ServletFileUpload.isMultipartContent(request)) {
 				"insert into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
 				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
+		String strAutoAssign = request.getParameter("auto").toString();
+		out.write("Auto assign option: " + strAutoAssign);
+		if (strAutoAssign.compareTo("1") == 0) {
+			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal());
+			if (intAutoAssignResult < 1) {
+				pageContext.setAttribute("message", "Auto assign failed with error code of " + intAutoAssignResult);
+			}
+			else {
+				pageContext.setAttribute("message", "Successfully assigned guest " + id + " to table " + intAutoAssignResult);
+			}
+		}
 		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
 }
