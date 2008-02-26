@@ -16,6 +16,7 @@ public class Guest {
 	private int guestVeg;
 	private int guestMus;
 	private int id;
+	private int weddingID;
 	
 	public Guest() {
 	}
@@ -31,6 +32,7 @@ public class Guest {
         guestVeg = rs.getInt("guestVeg");
         guestMus = rs.getInt("guestMus");
         id = rs.getInt("id");
+        weddingID=rs.getInt("weddingID");
     }
 
     public Guest(HttpServletRequest req) {
@@ -57,6 +59,14 @@ public class Guest {
 		return name;
 	}
 
+	public int getweddingID(){
+		return weddingID;
+	}
+	
+	public void setweddingID(int weddingID){
+		this.weddingID = weddingID;
+	}	
+	
 	public void setName(String name) {
 		this.name = name;
 	}
