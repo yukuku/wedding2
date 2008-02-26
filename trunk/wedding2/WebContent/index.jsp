@@ -27,7 +27,7 @@ response.setHeader("Expires", "Tue, 26 Feb 2008 00:00:00 GMT");
 boolean moduleOk = false;
 String module = request.getParameter("module");
 if (module == null) module = "main";
-for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "assign", "overview", }) {
+for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "assign", "overview", "attendance", }) {
     if (ok.equals(module)) {
         moduleOk = true;
         break;
