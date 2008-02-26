@@ -16,6 +16,8 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 	int nGroupsFull = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=guestTotal", active.getId());
 	int nGroupsPartial = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended>0 and attended<guestTotal", active.getId());
 	int nGroupsNone = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=0", active.getId());
+	int nAssignedGroups= db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and tableNumber<>0", active.getId());
+	int nUnassignedGroups= db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and tableNumber=0", active.getId());	
 %>
 
 <h1>${active.brideName} &amp; ${active.groomName}'s Wedding</h1>
@@ -110,6 +112,14 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 	<tr>
 		<th>- Absent groups</th>
 		<td><%= nGroupsNone %> groups</td>
+	</tr>
+		<th>- Assigned groups</th>
+		<td><%= nAssignedGroups %> groups</td>
+	<tr>
+		<th>- Unassigned groups</th>
+		<td><%= nUnassignedGroups %> groups</td>	
+	</tr>
+	<tr>
 	</tr>
 </table>
 

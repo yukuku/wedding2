@@ -15,7 +15,7 @@
 <script language="javascript">
 function validForm(frm){
 	if(!isNumeric(frm.guestTotal.value)){
-        alert("Make sure Total number of guests field is numeric!");        
+	    alert("Make sure Total number of guests field is numeric!");        
         return false;
     }
     if(!isNumeric(frm.guestVeg.value)){
@@ -55,19 +55,19 @@ function isNumeric(str){
 	    DatabaseConnection db = DatabaseConnection.getInstance();
         ResultSet rs= db.select("SELECT * FROM IP_GUEST WHERE ID=?",id);
         rs.next();
-        Guest g = new Guest(rs);
+        Guest g = new Guest(rs); 
+        Guest gn=new Guest(rs);
         pageContext.setAttribute("g", g);
        
+		String saction=request.getParameter("action");
+		if("submit".equalsIgnoreCase(saction)){
 %>
-
-<c:if test="${param.action == 'submit'}">
 	<jsp:setProperty name="g" property="*" />
-	<% 
+<%	    
 		if (id > 0) {
-			
 			boolean b=db.update(g);
 			if (b){			
-				Assignment.unassign(db,Wedding.getWedding(db,g.getweddingID()),g);
+				Assignment.unassign(db,Wedding.getWedding(db,gn.getweddingID()),gn);
 				out.println("<SCRIPT LANGUAGE='JavaScript'>");
 				out.println("document.formGuestList.weddingID.value=" + String.valueOf(g.getweddingID()));
 				out.println("document.formGuestList.submit()");
@@ -78,23 +78,24 @@ function isNumeric(str){
 			    out.println(" </SCRIPT> ");
 			}
 		}
-	%>
-</c:if>
+	}
+%>
+
 
 <form name="frmGuestEdit" method="post" onSubmit="return validForm(this)">
 
 <table class="form" >   
     <tr>
-     	<td>Guest ID:</td>
+     	<td>Guest ID</td>
          <td><input name="guestID" type="text" value="${g.id}" readonly style="background-color: gainsboro;" size="24"/></td>
     </tr>          
 	<tr>
         <td>Name</td>
-        <td><input name="name" type="text" value="${g.name}" required="required   id="name" size="24" maxlength="64" /></td>        
+        <td><input name="name" type="text" value="${g.name}" required="required id="name" size="24" maxlength="64" /></td>        
     </tr>
     <tr>
         <td>Category</td>
-        <td><p>
+        <td>
         	<select name="category" id="category" >
         		<c:set var="sel" value=""></c:set>
             	<c:if test="${g.category == 'relative'}">
@@ -111,7 +112,7 @@ function isNumeric(str){
               		<c:set var="sel" value="selected"></c:set>
             	</c:if>
             	<option value="friend" ${sel}>friend</option>           
-        	</select></p>
+        	</select>
         </td>
     </tr>    
     <tr>
@@ -150,9 +151,8 @@ function isNumeric(str){
     </tr>
     <tr>
     <tr>
-        <td><input type="hidden" name="action" value="submit" />
-        	<input name="id" type="hidden" id="id" value="${g.id}" />
-        	<input name="weddingID" type="hidden" value="${g.weddingID}"/>
+        <td><input type="hidden" name="action" value="submit" />        	
+        	<input type="hidden" name="id" id="id" value="${g.id}" />        	
         </td>
         <td><input type="submit" value="Edit" /></td>
     <tr>   
