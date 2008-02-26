@@ -10,7 +10,6 @@
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
-<%@include file="activeWedding.inc.jsp" %>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 
@@ -51,7 +50,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 		Guest g = new Guest(request);
 		int id = db.insert(
 				"insert into IP_GUEST (weddingID, name, allocated, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-				getActiveWedding(db, session).getId(), g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
+				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
 		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
@@ -59,12 +58,13 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
 %>
 
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <h1>Add/import guests</h1>
 
 <h2>Add guests</h2>
 
 <%
-	if (getAndCheckActiveWedding(db, session, out) != null) {
+	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
 
 <form name="form0" method="post">

@@ -4,22 +4,23 @@
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
-<%@include file="activeWedding.inc.jsp"%>
+<%@page import="sg.edu.ntu.wedding.Assignment"%>
+<%@page import="java.util.Vector"%>
+<%@page import="sg.edu.ntu.wedding.Table"%>
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
+<%@page import="java.sql.ResultSet"%>
 <%
 	DatabaseConnection db = DatabaseConnection.getInstance();
-	Wedding active = getActiveWedding(db, session);
+	Wedding active = ActiveWedding.getActiveWedding(db, session);
 
 	int guestID = Parse.toInt(request.getParameter("id"));
 	String action = request.getParameter("action");
 %>
 
-<%@page import="sg.edu.ntu.wedding.Assignment"%>
-<%@page import="java.util.Vector"%>
-<%@page import="sg.edu.ntu.wedding.Table"%>
 <h1>Assign guests to tables</h1>
 
 <%
-	if (getAndCheckActiveWedding(db, session, out) != null) {
+	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
 
 <%
