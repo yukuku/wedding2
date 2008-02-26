@@ -1,5 +1,6 @@
 #summary Points after testing
 
+To consider......
 
 Guest Attendence Page
 1. Should allow to update attended after assigning table??
@@ -9,3 +10,7 @@ Table Assign
 
 Manage Weddings
 3. The message for Manage weddings..
+
+
+The changes I made
+1. I added Unassigned and assigned groups in overview page
