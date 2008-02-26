@@ -57,15 +57,14 @@ if ("attend".equals(action)) {
 							g.getId(), g.getName(), g.getGuestTotal(), g.getTableNumber() == 0 ? "-" : String.valueOf(g.getTableNumber()), g.getAttended(), g.getGuestTotal())
 					);
 				}
-	%>
-	
-	<tr>
-		<td><input type="hidden" name="action" value="attend" /></td>
-		<td colspan="3"><input type="submit" value="Update" /></td>
+	%>	
+	<tr>		
+		<td colspan="4" align="right"><input type="hidden" name="action" value="attend" /><input type="submit" value="Update" /></td>
 	</tr>	
 </table>
 
 </form>
+
 <%
 }
 %>

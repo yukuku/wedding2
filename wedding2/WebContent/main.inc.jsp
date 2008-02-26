@@ -32,7 +32,7 @@ that has been realized:</p>
   (manual mode and auto mode)</div>
   <li>
 <div align="left">Support 2 formats of report generation 
-  (PDF format and Microsoft Excell Sheet format)</div></li></ol>
+  (PDF format and Microsoft Excel Sheet format)</div></li></ol>
 <h3 align="left"> Usage Instructions</h3>
 <p align="left"> List of menu entries and their services are 
  shown below:</p>
@@ -56,7 +56,7 @@ that has been realized:</p>
 <div align="left">Edit Guest (hidden page)&nbsp;- Guest updating page</div>
   <li>
 <div align="left"><a href="./?module=guestlist">Guest 
-  List</a> - Guest status page</div>
+  List</a> - Guest status page (edit / delete guest)</div>
   <li>
 <div align="left"><a href="./?module=assign">Table 
   Assignments</a> - Table allocation page (manual)</div>

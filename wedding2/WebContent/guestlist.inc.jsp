@@ -80,7 +80,7 @@ function gsort(sortCol) {
 <input type="hidden" name="sortAs" value="" />
 <input type="hidden" name="weddingID" value="<%=session.getAttribute(Constant.Session.activeWedding).toString()%>" />
 </form>
-
+<br>
 <%
 	if (!"0".equals(weddingID)) {
 %>
@@ -91,6 +91,7 @@ function gsort(sortCol) {
 <%
 	}
 %>
+<br>
 <table class="listview">
 	<tr>
 		<th onclick="gsort('NAME')" class="sortable">Guest Title</th>
