@@ -59,7 +59,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 		String strAutoAssign = request.getParameter("auto").toString();
 		out.write("Auto assign option: " + strAutoAssign);
 		if (strAutoAssign.compareTo("1") == 0) {
-			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal());
+			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus(), ActiveWedding.getActiveWedding(db, session));
 			if (intAutoAssignResult < 1) {
 				pageContext.setAttribute("message", "Auto assign failed with error code of " + intAutoAssignResult);
 			}
