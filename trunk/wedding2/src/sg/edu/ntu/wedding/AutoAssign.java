@@ -18,7 +18,7 @@ public class AutoAssign {
 		if (rsWeddingTables.last() == true) {
 			
 			// Determine the type of table for the current guest
-			if ((intTotalGuests > 0 && intTotalVeg > 0 && intTotalMus > 0) || (intTotalGuests > 0 && intTotalVeg == 0 && intTotalMus > 0) || (intTotalGuests > 0 && intTotalVeg > 0 && intTotalMus == 0)) {
+			if ((intTotalGuests > 0 && intTotalVeg > 0 && intTotalMus > 0) || (intTotalGuests > 0 && intTotalVeg == 0 && intTotalMus > 0) || (intTotalGuests > 0 && intTotalVeg > 0 && intTotalMus == 0) || (intTotalGuests > 0 && intTotalVeg == 0 && intTotalMus == 0)) {
 				if (intTotalGuests == intTotalVeg)
 					tblType = Table.Type.VEG;
 				else if (intTotalGuests == intTotalMus)
@@ -50,9 +50,4 @@ public class AutoAssign {
 			return -2;
 		
 	}
-	
-	public static int AutoAssignAllGuests () {
-		return 1;
-	}
-	
 }
