@@ -61,13 +61,14 @@ if (ServletFileUpload.isMultipartContent(request)) {
 		if (strAutoAssign.compareTo("1") == 0) {
 			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus(), ActiveWedding.getActiveWedding(db, session));
 			if (intAutoAssignResult < 1) {
-				pageContext.setAttribute("message", "Auto assign failed with error code of " + intAutoAssignResult);
+				pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Auto assign failed with error code of " + intAutoAssignResult);
 			}
 			else {
-				pageContext.setAttribute("message", "Successfully assigned guest " + id + " to table " + intAutoAssignResult);
+				pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Successfully assigned guest " + id + " to table " + intAutoAssignResult);
 			}
 		}
-		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
+		else
+			pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
 }
 
