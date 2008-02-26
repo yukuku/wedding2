@@ -124,3 +124,13 @@ function delete_(id) {
     </tr>
 </table>
 </form>
+
+<%
+if("activate".equals(action)){
+%>
+<script type="text/javascript">
+window.location.href = "./?module=weddings";
+</script>
+<%
+}
+%>
