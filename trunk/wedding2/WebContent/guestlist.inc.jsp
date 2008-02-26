@@ -3,6 +3,7 @@
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
 <%@page import="sg.edu.ntu.wedding.Printer"%>
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
+<%@page import="sg.edu.ntu.wedding.Guest"%>
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
 
@@ -63,8 +64,18 @@ function gsort(sortCol) {
 <%
 	Printer prn = new Printer(out);
 	String weddingID = session.getAttribute(Constant.Session.activeWedding).toString();
-	if (weddingID == null || weddingID == "")
-		weddingID = "0";
+	if (weddingID == null || weddingID == "") weddingID = "0";
+	String action = request.getParameter("action");
+//	if (action.equalsIgnoreCase("delete")) {
+	if ("delete".equalsIgnoreCase(action)) {
+		ResultSet rs1 = db.select(Constant.Session.guestTableQry2, request.getParameter("id"));
+		while (rs1.next()){
+			Guest g = new Guest(rs1);
+//	        pageContext.setAttribute("g", g);
+			db.delete(g);
+		}
+	}
+
 %>
 
 <form name="formSelect" method="post">

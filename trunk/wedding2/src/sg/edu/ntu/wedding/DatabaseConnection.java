@@ -88,7 +88,22 @@ public class DatabaseConnection {
             return false;
         }  
     }
-    
+
+    public boolean delete(Guest g){
+    	checkConnection();
+        try {
+        	java.sql.Statement st = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
+        	String sqlTable = "UPDATE IP_TABLE SET VACANCY = (Vacancy - " + g.getGuestTotal() + " ) WHERE WEDDINGID = " + g.getweddingID() + " AND NUMBER = " + g.getTableNumber();
+           	String sqlGuest = "DELETE FROM IP_GUEST WHERE ID = " + g.getId();
+            st.execute(sqlTable);
+            st.execute(sqlGuest);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }  
+    }
+
     public int insert(String sql, Object... params) {
         checkConnection();
         try {
