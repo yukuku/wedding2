@@ -72,7 +72,7 @@ public class Importer {
 		if (blnValidation) {
 			// Prepare for Import only if all rows are validated correctly
 			for (Vector<String> vFileContent : vFileContents) {
-				dbcConnection.insert("Insert Into IP_Guest (weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
+				dbcConnection.insert("Insert Into IP_GUEST (weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
 				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), "invited", vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
 			}
 			return 1;
