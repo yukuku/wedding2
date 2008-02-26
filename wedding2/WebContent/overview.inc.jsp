@@ -16,7 +16,6 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 	int nGroupsFull = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=guestTotal", active.getId());
 	int nGroupsPartial = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended>0 and attended<guestTotal", active.getId());
 	int nGroupsNone = db.fetchInt("select count(*) as c from IP_GUEST where weddingId=? and attended=0", active.getId());
-	ResultSet rs= db.select("select tableNumber,sum(attended) as total from IP_GUEST where weddingID=? and tableNumber<> 0 group by tableNumber",active.getId());
 %>
 
 <h1>${active.brideName} &amp; ${active.groomName}'s Wedding</h1>
@@ -59,20 +58,35 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 	</tr>
 </table>
 
-<h2>Attended Tables</h2>
+<div style="height: 12px"></div>
 
 <table class="listview">
 	<tr>
-		<th onclick="gsort('tableNumber')" class="sortable">Table Number</th>
-		<th  onclick="gsort('total')" class="sortable">Total Guests</th>		
+		<th>Table Number</th>
+		<th>Assigned</th>
+		<th>Attended</th>
+		<th>Free</th>
 	</tr>
 <%
 	Printer prn = new Printer(out);
+	
+	ResultSet rs = db.select("select * from IP_TABLE where weddingId=? order by number asc", active.getId());
+	
 	while (rs.next()) {
-		prn.tr(rs.getString("tableNumber"), rs.getString("total"));
+		int assigned = db.fetchInt("select sum(guestTotal) as c from IP_GUEST where weddingId=? and tableNumber=?", active.getId(), rs.getInt("number"));
+		int attended = db.fetchInt("select sum(attended) as c from IP_GUEST where weddingId=? and tableNumber=?", active.getId(), rs.getInt("number"));
+		prn.tr(
+			rs.getInt("number"),
+			assigned,
+			attended,
+			rs.getInt("vacancy")
+		);
 	}
+
+
 %>
 </table>
+
 
 <h2>Guests</h2>
 
