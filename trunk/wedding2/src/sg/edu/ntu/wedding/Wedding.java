@@ -17,6 +17,12 @@ public class Wedding {
     public Wedding() {
     }
     
+    public static Wedding getWedding(DatabaseConnection db, int id) throws SQLException {
+    	ResultSet rs = db.select("select * from IP_WEDDING where id=?", id);
+    	rs.next();
+    	return new Wedding(rs);
+    }
+    
     public Wedding(ResultSet rs) throws SQLException {
         brideName = rs.getString("brideName");
         groomName = rs.getString("groomName");
