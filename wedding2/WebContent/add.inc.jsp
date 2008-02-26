@@ -38,7 +38,6 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	    	if ("file".equals(name)) {
 	    		//BufferedReader in = new BufferedReader(new InputStreamReader(stream, "utf8"));
 	    		int intAutoAssign;
-	    		out.write("Auto assign option: " + auto);
 	    		if (auto == true)
 	    			intAutoAssign = 1;
 	    		else
@@ -73,7 +72,6 @@ if (ServletFileUpload.isMultipartContent(request)) {
 			strAutoAssign = "0";
 		else
 			strAutoAssign = "1";
-		out.write("Auto assign option: " + strAutoAssign);
 		if (strAutoAssign.compareTo("1") == 0) {
 			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus(), ActiveWedding.getActiveWedding(db, session));
 			if (intAutoAssignResult < 1) {
