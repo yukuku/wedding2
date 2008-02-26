@@ -2,6 +2,8 @@
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
+<%@page import="sg.edu.ntu.wedding.Assignment" %>
+<%@page import="sg.edu.ntu.wedding.Wedding" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h1>Edit guests</h1>
@@ -10,6 +12,44 @@
 <input type="hidden" name="weddingID" value="0" />
 </form>
 
+<script language="javascript">
+function validForm(frm){
+	if(!isNumeric(frm.guestTotal.value)){
+        alert("Make sure Total number of guests field is numeric!");        
+        return false;
+    }
+    if(!isNumeric(frm.guestVeg.value)){
+        alert("Make sure guestVeg field is numeric!");
+        return false;
+    }   
+    if(!isNumeric(frm.guestMus.value)){
+        alert("Make sure guestMus field is numeric!");
+        return false;
+    }  
+    if(parseInt(frm.guestTotal.value)< (parseInt(frm.guestVeg.value)+parseInt(frm.guestMus.value))){
+    	alert("Make sure the addition of guestVeg and guestMus is not greater than total no. of guests!");
+    	return false;
+    }    
+    return true;
+}
+
+function isNumeric(str){
+  	var strValidChars = "0123456789";
+	var strChar;
+   	var blnResult = true;
+
+   	//  test str consists of valid characters listed above
+   	for (i = 0; i < str.length && blnResult == true; i++){
+    	strChar = str.charAt(i);
+      	if (strValidChars.indexOf(strChar) == -1){
+        	blnResult = false;
+        }
+    }
+   	return blnResult;
+   }
+
+</script>
+
 <%         
 		int id= Integer.parseInt(request.getParameter("id"));		
 	    DatabaseConnection db = DatabaseConnection.getInstance();
@@ -17,14 +57,17 @@
         rs.next();
         Guest g = new Guest(rs);
         pageContext.setAttribute("g", g);
+       
 %>
 
 <c:if test="${param.action == 'submit'}">
 	<jsp:setProperty name="g" property="*" />
 	<% 
 		if (id > 0) {
+			
 			boolean b=db.update(g);
-			if (b){
+			if (b){			
+				Assignment.unassign(db,Wedding.getWedding(db,g.getweddingID()),g);
 				out.println("<SCRIPT LANGUAGE='JavaScript'>");
 				out.println("document.formGuestList.weddingID.value=" + String.valueOf(g.getweddingID()));
 				out.println("document.formGuestList.submit()");
@@ -38,7 +81,7 @@
 	%>
 </c:if>
 
-<form name="guestInfo" method="post">
+<form name="frmGuestEdit" method="post" onSubmit="return validForm(this)">
 
 <table class="form" >   
     <tr>
@@ -47,7 +90,7 @@
     </tr>          
 	<tr>
         <td>Name</td>
-        <td><input name="name" type="text" value="${g.name}"   id="name" size="24" maxlength="64" /></td>        
+        <td><input name="name" type="text" value="${g.name}" required="required   id="name" size="24" maxlength="64" /></td>        
     </tr>
     <tr>
         <td>Category</td>
@@ -95,15 +138,15 @@
     </tr>
     <tr>
         <td>Total number of guests</td>
-        <td><input name="guestTotal" value="${g.guestTotal}" type="text" id="guestTotal" size="6" maxlength="2" /></td>
+        <td><input name="guestTotal" value="${g.guestTotal}" type="text" id="guestTotal" required="required  size="6" maxlength="2" /></td>
     </tr>
     <tr>
         <td>- Vegetarians</td>
-        <td><input name="guestVeg" type="text" id="guestVeg" value="${g.guestVeg}" size="6" maxlength="2" /></td>
+        <td><input name="guestVeg" type="text" id="guestVeg" value="${g.guestVeg}" size="6" required="required  maxlength="2" /></td>
     </tr>
     <tr>
         <td>- Muslims</td>
-        <td><input name="guestMus" type="text" id="guestMus" value="${g.guestMus}" size="6" maxlength="2" /></td>
+        <td><input name="guestMus" type="text" id="guestMus" value="${g.guestMus}" size="6" required="required  maxlength="2" /></td>
     </tr>
     <tr>
     <tr>
@@ -111,7 +154,7 @@
         	<input name="id" type="hidden" id="id" value="${g.id}" />
         	<input name="weddingID" type="hidden" value="${g.weddingID}"/>
         </td>
-        <td><input type="submit" value="Edit"/></td>
+        <td><input type="submit" value="Edit" /></td>
     <tr>   
 </table>
 
