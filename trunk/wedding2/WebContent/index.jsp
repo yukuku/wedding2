@@ -36,16 +36,18 @@ for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "a
 
 %>
 
-
-<div id="leftMenu">
-	<%@include file="leftmenu.inc.jsp" %>
-</div>
 <div id="main">
 	<% if (moduleOk) { 	%>
 		<jsp:include page="<%= module + ".inc.jsp" %>"></jsp:include>
 	<% } else { %>
 		<h1>Do not try to hack,  ok? _(^^;)ゞ</h1>
 	<% } %>
+
+
+<div id="leftMenu">
+	<%@include file="leftmenu.inc.jsp" %>
+</div>
+
 <div id="footer">
 <%@include file="footer.inc.jsp" %>
 </div>

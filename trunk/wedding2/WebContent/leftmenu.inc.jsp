@@ -22,7 +22,6 @@ var MENU_ITEMS = [
 ,['Table Assignments','./?module=assign', {'tw' : '_parent'},]
 ,['Auto Assignments (tm)','./?module=auto', {'tw' : '_parent'},]
 ,['Guest Attendance','./?module=attendance', {'tw' : '_parent'},]
-,['Reports','./?module=report', {'tw' : '_parent'},]
 
 <% } %>
 
