@@ -45,16 +45,16 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	    			intAutoAssign = 0;
 	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"), intAutoAssign, ActiveWedding.getActiveWedding(db, session));
 	    		if (intProcessedId < 0) {
-	    			pageContext.setAttribute("message", "There are errors with the file. File not uploaded.");
+	    			pageContext.setAttribute("message", "There are errors with the file. File not uploaded!");
 	    		}
 	    		else {
 	    			if (intAutoAssign == 0)
-	    				pageContext.setAttribute("message", "File uploaded successfully");
+	    				pageContext.setAttribute("message", "File uploaded successfully!");
 	    			else {
 	    				if (intProcessedId == 1)
-	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign completed");
+	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign completed!");
 	    				else
-	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign incomplete");
+	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign incomplete! Please perform manual assignment!");
 	    			}
 	    		}
 	    	}
@@ -77,10 +77,15 @@ if (ServletFileUpload.isMultipartContent(request)) {
 		if (strAutoAssign.compareTo("1") == 0) {
 			int intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(id, ActiveWedding.getActiveWedding(db, session).getId(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus(), ActiveWedding.getActiveWedding(db, session));
 			if (intAutoAssignResult < 1) {
-				pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Auto assign failed with error code of " + intAutoAssignResult);
+				if (intAutoAssignResult == -3)
+					pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Unable to auto assign due to lack of tables with either the right vacancy or meal type!");
+				else if (intAutoAssignResult == -2)
+					pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Unable to auto assign as there are no more empty tables!");
+				else
+					pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Unable to auto assign with unexpected error code of " + intAutoAssignResult);
 			}
 			else {
-				pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Successfully assigned guest " + id + " to table " + intAutoAssignResult);
+				pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added. " + "Successfully assigned to table " + intAutoAssignResult);
 			}
 		}
 		else
