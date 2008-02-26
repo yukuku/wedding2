@@ -5,6 +5,7 @@
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%
 DatabaseConnection db = DatabaseConnection.getInstance();
 Printer prn = new Printer(out);
@@ -37,9 +38,9 @@ if ("activate".equals(action)) {
 }
 
 %>
-<%@include file="activeWedding.inc.jsp" %>
+
 <%
-pageContext.setAttribute("active", getActiveWedding(db, session));
+pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
 %>
 
 <form name="formActivate" method="post">
