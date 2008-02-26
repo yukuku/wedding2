@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Guest {
 	private String name;
-	private boolean allocated;
 	private int tableNumber;
 	private String category;
 	private String invitedBy;
@@ -23,7 +22,6 @@ public class Guest {
 
     public Guest(ResultSet rs) throws SQLException {
         name = rs.getString("name");
-        allocated = rs.getBoolean("allocated");
         tableNumber = rs.getInt("tableNumber");
         category = rs.getString("category");
         invitedBy = rs.getString("invitedBy");
@@ -37,7 +35,6 @@ public class Guest {
 
     public Guest(HttpServletRequest req) {
         name = req.getParameter("name");
-        allocated = Parse.toBoolean(req.getParameter("allocated"));
         tableNumber = Parse.toInt(req.getParameter("tableNumber"));
         category = req.getParameter("category");
         invitedBy = req.getParameter("invitedBy");
@@ -69,14 +66,6 @@ public class Guest {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public boolean isAllocated() {
-		return allocated;
-	}
-
-	public void setAllocated(boolean allocated) {
-		this.allocated = allocated;
 	}
 
 	public int getTableNumber() {

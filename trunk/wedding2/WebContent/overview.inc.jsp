@@ -9,7 +9,24 @@ pageContext.setAttribute("active", active);
 if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
 
-<h1>${w.brideName} &amp; ${w.groomName}'s Wedding</h1>
+<h1>${active.brideName} &amp; ${active.groomName}'s Wedding</h1>
+
+<h2>Wedding Info</h2>
+
+<table class="listview">
+	<tr>
+		<th>Bride Name</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Groom Name</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Unassigned tables</th>
+		<td></td>
+	</tr>
+</table>
 
 <h2>Tables</h2>
 
@@ -36,11 +53,23 @@ if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 		<td></td>
 	</tr>
 	<tr>
-		<th>Assigned tables</th>
+		<th>Number of guest groups</th>
 		<td></td>
 	</tr>
 	<tr>
-		<th>Unassigned tables</th>
+		<th>- Invited groups</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>- Attended groups</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>- Absent groups</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>- Cancelled groups</th>
 		<td></td>
 	</tr>
 </table>
