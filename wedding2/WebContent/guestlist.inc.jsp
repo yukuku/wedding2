@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
 <%@page import="sg.edu.ntu.wedding.Printer"%>
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
 <%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.sql.ResultSet"%>
-
-<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 
 <h1>View Guest List</h1>
 
