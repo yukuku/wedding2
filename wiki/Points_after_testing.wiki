@@ -1,0 +1,7 @@
+#summary Points after testing
+
+
+Guest Attendence Page
+1. Should allow to update attended after assigning table??
+2. Should show Veg,Mus,Non instead of mixed??
+3. The message for Manage weddings..
