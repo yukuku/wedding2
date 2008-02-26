@@ -70,9 +70,7 @@ function gsort(sortCol) {
 	if ("delete".equalsIgnoreCase(action)) {
 		ResultSet rs1 = db.select(Constant.Session.guestTableQry2, request.getParameter("id"));
 		while (rs1.next()){
-			Guest g = new Guest(rs1);
-//	        pageContext.setAttribute("g", g);
-			db.delete(g);
+			db.delete(ActiveWedding.getActiveWedding(db, session), new Guest(rs1));
 		}
 	}
 

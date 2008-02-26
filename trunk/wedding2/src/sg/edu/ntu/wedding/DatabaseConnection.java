@@ -89,13 +89,12 @@ public class DatabaseConnection {
         }  
     }
 
-    public boolean delete(Guest g){
+    public boolean delete(Wedding w, Guest g){
     	checkConnection();
         try {
         	java.sql.Statement st = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_UPDATABLE);
-        	String sqlTable = "UPDATE IP_TABLE SET VACANCY = (Vacancy - " + g.getGuestTotal() + " ) WHERE WEDDINGID = " + g.getweddingID() + " AND NUMBER = " + g.getTableNumber();
+        	Assignment.unassign(this, w, g);
            	String sqlGuest = "DELETE FROM IP_GUEST WHERE ID = " + g.getId();
-            st.execute(sqlTable);
             st.execute(sqlGuest);
             return true;
         } catch (SQLException e) {
