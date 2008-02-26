@@ -50,8 +50,8 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	if ("add".equals(action)) {
 		Guest g = new Guest(request);
 		int id = db.insert(
-				"insert into IP_GUEST (weddingID, name, allocated, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.isAllocated(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
+				"insert into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
+				ActiveWedding.getActiveWedding(db, session).getId(), g.getName(), g.getCategory(), g.getInvitedBy(), g.getGuestTotal(), g.getGuestVeg(), g.getGuestMus()
 		);
 		pageContext.setAttribute("message", "The guest (" + g.getName() + ") has been added");
 	}
