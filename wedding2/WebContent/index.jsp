@@ -1,5 +1,10 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+
+response.setHeader("Cache-Control", "no-cache, must-revalidate");
+response.setHeader("Expires", "Tue, 26 Feb 2008 00:00:00 GMT");
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +27,7 @@
 boolean moduleOk = false;
 String module = request.getParameter("module");
 if (module == null) module = "main";
-for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "assign", }) {
+for (String ok: new String[] {"main", "weddings", "add", "edit", "guestlist", "assign", "overview", }) {
     if (ok.equals(module)) {
         moduleOk = true;
         break;
