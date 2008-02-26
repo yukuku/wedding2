@@ -76,7 +76,7 @@ function gsort(sortCol) {
 %>
 
 <form name="formSelect" method="post">
-<span>Please select a wedding: </span> 
+<%@include file="./currentwedding.inc.jsp" %>
 <input type="hidden" name="sortAs" value="" />
 <input type="hidden" name="weddingID" value="<%=session.getAttribute(Constant.Session.activeWedding).toString()%>" />
 </form>
