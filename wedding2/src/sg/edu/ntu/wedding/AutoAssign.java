@@ -35,7 +35,7 @@ public class AutoAssign {
 			do  {
 					Table tblTable = new Table(rsWeddingTables);
 					tblTable.detectType(dbcConnection, wWedding);
-					if ((tblTable.getType() == Table.Type.UNKNOWN || tblTable.getType() == tblType) && rsWeddingTables.getInt("vacancy") >= intTotalGuests) {
+					if ((tblTable.getType() == Table.Type.MIXED || tblTable.getType() == Table.Type.UNASSIGNED || tblTable.getType() == tblType) && rsWeddingTables.getInt("vacancy") >= intTotalGuests) {
 						dbcConnection.execute("Update IP_GUEST Set tableNumber = ? Where id=?", rsWeddingTables.getInt("number"), intGuestId);
 						dbcConnection.execute("Update IP_TABLE Set vacancy = vacancy - ? Where weddingID=? And number = ?", intTotalGuests, intWeddingId, rsWeddingTables.getInt("number"));
 						// Return 1 if auto assignment for the current guest is successful
