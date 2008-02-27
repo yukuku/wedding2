@@ -19,7 +19,9 @@ public class Importer {
 
 		// Vector<Vector<String>> vFileContents = CSVFile.read(new File(new Scanner(strFileName).nextLine()));
 	    Vector<Vector<String>> vFileContents = CSVFile.read(strFileName);
-		
+	    if (vFileContents.isEmpty() == true)
+	    	return -10;
+	    
 		for (Vector<String> vFileContent : vFileContents) {
 			if (vFileContent.size() == 6) {
 				// Validate File Name
