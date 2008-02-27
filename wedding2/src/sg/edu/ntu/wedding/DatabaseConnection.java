@@ -146,7 +146,7 @@ public class DatabaseConnection {
     private void checkConnection() {
         try {
             connection.createStatement().execute("select 1");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             connection = connect();
         }
