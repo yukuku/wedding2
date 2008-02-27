@@ -1,4 +1,4 @@
-#Summary FileFormat
+#summary FileFormat
 
 = Introduction =
 File Format
@@ -6,10 +6,14 @@ File Format
 
 = Details =
 Sample Format
+{{{
 name,category,invitedBy,guestTotal,guestVeg,guestMus
+}}}
 
 Sample Data
+{{{
 Jeremy,relative,groom,0,0,1
 Waku,relative,bride,4,0,0
 Shilei,colleague,groom,2,1,1
 Yuku,friend,bride,3,1,2
+}}}
