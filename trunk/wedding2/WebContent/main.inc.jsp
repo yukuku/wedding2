@@ -1,4 +1,5 @@
 <h2 align="center">Wedding Dinner Planning System</h2>
+<p align="right">Best viewed in <b>Firefox 2</b><br/> or <b>Opera 9</b> for full Web Forms 2.0 functionality</p>
 <h3 align="left">Introduction to Application</h3>
 <p align="left">The Wedding Dinner Planning System is a 
 web-based application, which is used by agencies to book restaurant dinners and 

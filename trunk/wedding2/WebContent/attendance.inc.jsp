@@ -25,7 +25,11 @@ if ("attend".equals(action)) {
 		int guestId = Parse.toInt(guestIds[i]);
 		int attended = Parse.toInt(attendeds[i]);
 		
-		db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+        synchronized(db) {
+            int max = db.fetchInt("select guestTotal from IP_GUEST where id=?", guestId);
+            if (attended > max) attended = max;
+            db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+        }
 	}
 	
 	pageContext.setAttribute("message", "Attendance status updated.");
@@ -53,7 +57,7 @@ if ("attend".equals(action)) {
 				while (rs.next()) {
 					Guest g = new Guest(rs);
 					
-					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='number' min='0' max='%d' required='required' maxlength='2' size='4' /></td></tr>", 
+					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='number' min='0' max='%d' required='required' maxlength='2' size='4' style='text-align: right' /></td></tr>", 
 							g.getId(), g.getName(), g.getTableNumber() == 0 ? "-" : String.valueOf(g.getTableNumber()), g.getGuestTotal(), g.getAttended(), g.getGuestTotal())
 					);
 				}

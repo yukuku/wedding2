@@ -14,6 +14,7 @@
 
 <script language="javascript">
 function validForm(frm){
+    if (!Validation.filled(frm.name)) return false;
 	if(!isNumeric(frm.guestTotal.value)){
 	    alert("Make sure Total number of guests field is numeric!");        
         return false;
@@ -139,7 +140,7 @@ function isNumeric(str){
     </tr>
     <tr>
         <td>Group Size</td>
-        <td><input name="guestTotal" value="${g.guestTotal}" type="text" id="guestTotal" required="required  size="6" maxlength="2" /></td>
+        <td><input name="guestTotal" value="${g.guestTotal}" type="text" id="guestTotal" required="required" size="6" maxlength="2" /> persons</td>
     </tr>
     <tr>
         <td>- Vegetarians</td>

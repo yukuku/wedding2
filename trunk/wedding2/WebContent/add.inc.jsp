@@ -104,7 +104,23 @@ if (ServletFileUpload.isMultipartContent(request)) {
 <div class="message">${message}</div>
 </c:if>
 
-<form name="form0" method="post">
+<script type="text/javascript">
+
+function validateForm(form) {
+    if (!Validation.filled(form.name)) return false;
+    if (!Validation.number(form.guestTotal, 1, 10)) return false;
+    if (!Validation.number(form.guestVeg, 0, parseInt(form.guestTotal.value))) return false;
+    if (!Validation.number(form.guestMus, 0, parseInt(form.guestTotal.value))) return false;
+    if (parseInt(form.guestTotal.value) < (parseInt(form.guestVeg.value) + parseInt(form.guestMus.value))){
+    	alert("Make sure the addition of guestVeg and guestMus is not greater than total no. of guests!");
+    	return false;
+    }
+    return true;
+}
+
+</script>
+
+<form name="form0" method="post" onSubmit="return validateForm(this)">
 	<table class="form">
     <tr>
       <td>Name</td>
