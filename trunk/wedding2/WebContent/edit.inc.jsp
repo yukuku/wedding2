@@ -138,7 +138,7 @@ function isNumeric(str){
         </td>
     </tr>
     <tr>
-        <td>Total number of guests</td>
+        <td>Group Size</td>
         <td><input name="guestTotal" value="${g.guestTotal}" type="text" id="guestTotal" required="required  size="6" maxlength="2" /></td>
     </tr>
     <tr>

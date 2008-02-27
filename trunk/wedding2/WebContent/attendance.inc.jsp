@@ -44,7 +44,7 @@ if ("attend".equals(action)) {
 <table class="listview">
 	<tr>
 		<th>Name</th>
-		<th>Persons</th>
+		<th>Group Size</th>
 		<th>Table Number</th>
 		<th>Attended</th>
 	</tr>

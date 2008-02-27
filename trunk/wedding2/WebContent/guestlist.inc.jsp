@@ -80,24 +80,12 @@ function gsort(sortCol) {
 <input type="hidden" name="sortAs" value="" />
 <input type="hidden" name="weddingID" value="<%=session.getAttribute(Constant.Session.activeWedding).toString()%>" />
 </form>
-<br>
-<%
-	if (!"0".equals(weddingID)) {
-%>
-	<form name="formExport" method="get">
-	<input type="button" onclick="exportAs('pdf')" value="Export as PDF" />
-	<input type="button" onclick="exportAs('xls')" value="Export as Excel" />
-	</form>
-<%
-	}
-%>
-<br>
 <table class="listview">
 	<tr>
-		<th onclick="gsort('NAME')" class="sortable">Guest Title</th>
+		<th onclick="gsort('NAME')" class="sortable">Name</th>
 		<th  onclick="gsort('INVITEDBY')" class="sortable">Invited By</th>
-		<th  onclick="gsort('TABLENUMBER')" class="sortable">Table ID</th>
-		<th  onclick="gsort('GUESTTOTAL')"  class="sortable">Guest Number</th>
+		<th  onclick="gsort('TABLENUMBER')" class="sortable">Table Number</th>
+		<th  onclick="gsort('GUESTTOTAL')"  class="sortable">Group Size</th>
 		<th  onclick="gsort('GUESTVEG')" class="sortable">Vegetarians</th>
 		<th onclick="gsort('GUESTMUS')" class="sortable">Muslims</th>
 		<th>Edit Guest</th>
@@ -120,6 +108,12 @@ function gsort(sortCol) {
 		}
 	%>
 </table>
+
+<br>
+<form name="formExport" method="get">
+    <input type="button" onclick="exportAs('pdf')" value="Export as PDF" />
+    <input type="button" onclick="exportAs('xls')" value="Export as Excel" />
+</form>
 
 <%
 //end of if activeWedding;

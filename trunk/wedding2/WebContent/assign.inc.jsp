@@ -45,7 +45,7 @@
 <table class="listview">
 	<tr>
 		<th>Name</th>
-		<th>Persons</th>
+		<th>Group Size</th>
 		<th>Vegetarian</th>
 		<th>Muslim</th>
 		<th>Table Number</th>

@@ -133,9 +133,9 @@ if (ServletFileUpload.isMultipartContent(request)) {
       </td>
     </tr>
     <tr>
-      <td>Total number of guests </td>
+      <td>Group Size</td>
       <td>
-        <input name="guestTotal" type="number" min="1" max="10" required="required" id="guestTotal" size="6" maxlength="2" />
+        <input name="guestTotal" type="number" min="1" max="10" required="required" id="guestTotal" size="6" maxlength="2" /> persons
       </td>
     </tr>
     <tr>
