@@ -215,7 +215,7 @@ function validateForm(form) {
                 <b>File format for importing:</b><br/>
                 Group name, Category, Invited by, Group size, Vegetarians, Muslims<br/>
                 <b>Example:</b> (spaces are allowed)<br/>
-                Jeremy, relative, both, 0, 0, 1<br/>
+                Jeremy, relative, both, 2, 0, 1<br/>
                 Waku, relative, bride, 4, 0, 0<br/>
                 Sile, collague, groom, 2, 1, 1<br/>
                 Yuku, friend, bride, 3, 1, 2<br/>
