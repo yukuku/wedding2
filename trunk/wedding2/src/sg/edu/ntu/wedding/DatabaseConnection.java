@@ -11,7 +11,7 @@ public class DatabaseConnection {
     private static DatabaseConnection instance;
     
     private String host = "localhost";
-    private int port = 3306;
+    private int port = 40006;
     private String dbname = "wedding";
     private String user = "root";
     private String password = "";

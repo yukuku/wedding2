@@ -80,9 +80,6 @@ the software package to new application server:</p>
   <li>
 <div align="left">The service is accessable via <a 
   href="http://{DomainName}:{PortNumber}/Wedding/">http://{DomainName}:{PortNumber}/Wedding/</a>  </div></li></ol>
-<h3 align="left">Source Code of the Application</h3>
-<p align="left"><a href="./CI6111A1.zip">Source Code</a>  for the application is 
-downloadable from <a href="./CI6111A1.zip" >HERE</a>.</p>
 <h3 align="left"> Team Members</h3>
 <ul>
   <li>
