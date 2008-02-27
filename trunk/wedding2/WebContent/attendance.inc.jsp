@@ -21,20 +21,39 @@ if ("attend".equals(action)) {
 	String[] guestIds = request.getParameterValues("guestId");
 	String[] attendeds = request.getParameterValues("attended");
 	
+	String grmsg="";
+	String ltmsg="";
+	String upmsg="";
+	String msg="";
+	
 	for (int i = 0; i < guestIds.length && i < attendeds.length; i++) {
 		int guestId = Parse.toInt(guestIds[i]);
-		int attended = Parse.toInt(attendeds[i]);
+		int attended = Parse.toInt(attendeds[i]);		
 		
         synchronized(db) {
             int max = db.fetchInt("select guestTotal from IP_GUEST where id=?", guestId);
-            if (attended > max) attended = max;
-            db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+            String name = db.fetchStr("select name from IP_GUEST where id=?", guestId);
+            //if (attended > max) attended = max;                       
+            //db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+            if (attended > max){
+            	grmsg = grmsg.concat(", " + name);
+            }else if (attended < 0 ){            	
+            	ltmsg = ltmsg.concat(", " + name);            	
+            }else{
+            	db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+            	upmsg = upmsg.concat(", " + name);
+            }
         }
 	}
 	
-	pageContext.setAttribute("message", "Attendance status updated.");
+	if (!upmsg.equals(""))
+  		msg = msg.concat("Attendance status updated for" + upmsg + "!  ");
+	if (!ltmsg.equals(""))
+		msg = msg.concat("Make sure attended is not less than zero for" + ltmsg + "!  ");
+	if (!grmsg.equals(""))
+		msg = msg.concat("Make sure attended is not greater than group size for" + grmsg + "!  ");
+	pageContext.setAttribute("message", msg);
 }
-
 %>
 
 <h1>Guest Attendance</h1>
@@ -57,7 +76,7 @@ if ("attend".equals(action)) {
 				while (rs.next()) {
 					Guest g = new Guest(rs);
 					
-					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='number' min='0' max='%d' required='required' maxlength='2' size='4' style='text-align: right' /></td></tr>", 
+					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='range' min='0' max='%d' required='required' maxlength='2' size='4' style='text-align: right' /></td></tr>", 
 							g.getId(), g.getName(), g.getTableNumber() == 0 ? "-" : String.valueOf(g.getTableNumber()), g.getGuestTotal(), g.getAttended(), g.getGuestTotal())
 					);
 				}

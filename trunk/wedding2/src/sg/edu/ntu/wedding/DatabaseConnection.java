@@ -52,6 +52,21 @@ public class DatabaseConnection {
             return 0;
         }
     }
+    
+    public String fetchStr(String sql, Object... params){
+    	checkConnection();
+        try {
+            ResultSet rs = select(sql, params);
+            if (rs.next()) {
+            	return rs.getString(1);
+            } else {
+            	return "error";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
 
     public boolean execute(String sql, Object... params) {
         checkConnection();
