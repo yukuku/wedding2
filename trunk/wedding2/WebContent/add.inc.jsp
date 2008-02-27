@@ -197,9 +197,24 @@ function validateForm(form) {
 			<td><input type="file" name="file" required="required" size="60"/></td>
 		</tr>
 		<tr>
-			<td><input type="hidden" name="action" value="import" /></td>
-			<td><input type="submit" value="Import" /></td>
+			<td>&nbsp;</td>
+			<td>
+                <small>
+                <b>File format for importing:</b><br/>
+                Group name, Category, Invited by, Group size, Vegetarians, Muslims<br/>
+                <b>Example:</b> (spaces are allowed)<br/>
+                Jeremy, relative, both, 0, 0, 1<br/>
+                Waku, relative, bride, 4, 0, 0<br/>
+                Sile, collague, groom, 2, 1, 1<br/>
+                Yuku, friend, bride, 3, 1, 2<br/>
+                "Northpark, Tom", friend, both, 10, 4, 6
+                </small>
+            </td>
 		</tr>
+        <tr>
+            <td><input type="hidden" name="action" value="import" /></td>
+            <td><input type="submit" value="Import" /></td>
+        </tr>
 	</table>
 </form>
 
