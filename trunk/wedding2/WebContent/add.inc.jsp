@@ -120,13 +120,6 @@ function validateForm(form) {
     }
     return true;
 }
-
-function validateUploadForm(form) {
-	if (!Validation.filled(form.file)) return false;
-	
-	return true;
-}
-
 </script>
 
 <form name="form0" method="post" onSubmit="return validateForm(this)">
