@@ -5,12 +5,12 @@ import java.sql.SQLException;
 
 public class Table {
 	public enum Type {
-		UNKNOWN, MIXED, MUS, VEG,
+		UNASSIGNED, MIXED, MUS, VEG,
 	};
 
 	private int number;
 	private int vacancy;
-	private Type type = Type.UNKNOWN;
+	private Type type = Type.UNASSIGNED;
 
 	public Table(ResultSet rs) throws SQLException {
 		number = rs.getInt("number");
@@ -21,16 +21,20 @@ public class Table {
 		ResultSet rs = db.select("select * from IP_GUEST where weddingID=?", w.getId());
 		boolean veg = false;
 		boolean mus = false;
+		boolean total=false;
 		while(rs.next()) {
 			// every guest
 			Guest g = new Guest(rs);
 			if (g.getTableNumber() == number) {
 				if (g.getGuestVeg() > 0) veg = true;
 				if (g.getGuestMus() > 0) mus = true;
+				if (g.getGuestTotal()>0) total=true;
 			}
 		}
 		// Add new logic if (veg && mus) {
-		if ((veg && mus) || (!veg && !mus)) {
+		if (!total){
+			type = Type.UNASSIGNED;
+		}else if ((veg && mus) || (!veg && !mus)) {
 			type = Type.MIXED;
 		} else if (veg && !mus) {
 			type = Type.VEG;

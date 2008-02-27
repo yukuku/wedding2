@@ -28,7 +28,7 @@ function validForm(frm){
         return false;
     }  
     if(parseInt(frm.guestTotal.value)< (parseInt(frm.guestVeg.value)+parseInt(frm.guestMus.value))){
-    	alert("Make sure the addition of guestVeg and guestMus is not greater than total no. of guests!");
+    	alert("Make sure the addition of guestVeg and guestMus is not greater than group size!");
     	return false;
     }    
     return true;
