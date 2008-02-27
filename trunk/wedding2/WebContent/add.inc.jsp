@@ -44,11 +44,14 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	    			intAutoAssign = 0;
 	    		int intProcessedId = Importer.processFile(ActiveWedding.getActiveWedding(db, session).getId(), new InputStreamReader(stream, "utf8"), intAutoAssign, ActiveWedding.getActiveWedding(db, session));
 	    		if (intProcessedId < 0) {
-	    			pageContext.setAttribute("message", "There are errors with the file. File not uploaded!");
+	    			if (intProcessedId == -10)
+	    				pageContext.setAttribute("message", "Please provide a file with valid records!");
+	    			else
+	    				pageContext.setAttribute("message", "There are errors with the file. File not uploaded!");
 	    		}
 	    		else {
 	    			if (intAutoAssign == 0)
-	    				pageContext.setAttribute("message", "File uploaded successfully!");
+	    				pageContext.setAttribute("message", "File uploaded successfully!" + intProcessedId);
 	    			else {
 	    				if (intProcessedId == 1)
 	    					pageContext.setAttribute("message", "File uploaded successfully with Auto-Assign completed!");
@@ -118,6 +121,12 @@ function validateForm(form) {
     return true;
 }
 
+function validateUploadForm(form) {
+	if (!Validation.filled(form.file)) return false;
+	
+	return true;
+}
+
 </script>
 
 <form name="form0" method="post" onSubmit="return validateForm(this)">
@@ -184,7 +193,7 @@ function validateForm(form) {
 
 <h2>Or, import list of guests from file</h2>
 
-<form name="form1" method="post" enctype="multipart/form-data">
+<form name="form1" method="post" enctype="multipart/form-data" onSubmit="return validateForm(this)">
 	<table class="form">
 		<tr>
 			<td>AutoAssign</td>
