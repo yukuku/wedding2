@@ -120,7 +120,7 @@ function delete_(id) {
     </tr>
     <tr>
         <td>Number of Tables</td>
-        <td><input type="range" min="1" max="999" name="tables" size="6" maxlength="3" value="50" required="required" /></td>
+        <td><input type="number" min="1" max="999" name="tables" size="6" maxlength="3" value="50" required="required" /></td>
     </tr>
     <tr>
         <td><input type="hidden" name="action" value="create" /></td>
