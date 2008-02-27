@@ -3,7 +3,7 @@
 <p align="left">The Wedding Dinner Planning System is a 
 web-based application, which is used by agencies to book restaurant dinners and 
 arranging guest seating plan for their customers. The application was built by 
-using JAVA Servlet / JSP technology and running on Apache Tomcat Web Server and 
+using Java Servlet / JSP technology and running on Apache Tomcat Web Server and 
 MySQL Database Management System.</p>
 <p align="left">Below shows a list of basic functionalities 
 that has been realized:</p>
@@ -43,13 +43,13 @@ that has been realized:</p>
   <li>
 <div align="left"><a href="./?module=weddings">Manage 
   Weddings</a> - 
-  Wedding management page (list / activate&nbsp;current wedding, add new wedding)</div>
+  Wedding management page (list / activate current wedding, add new wedding)</div>
   <li>
 <div align="left"><a href="./?module=overview">Overview</a> - 
   Overview of activated wedding information (wedding and its table 
   / guest statistics)</div>
   <li>
-<div align="left"><a href="./?module=add">Add/ Import 
+<div align="left"><a href="./?module=add">Add / Import 
   Guests</a> - 
   Guest management page (add guest via single / batch mode)</div>
   <li>
@@ -72,19 +72,19 @@ the software package to new application server:</p>
 <ol>
   <li>
 <div align="left"><strong>Unzip</strong> application to 
-  {Appache Tomcat}\webapps folder</div>
+  {Apache Tomcat}\webapps folder</div>
   <li>
 <div align="left">(Using administrator 
   ID)&nbsp;<strong>GOTO</strong> {Appache Tomcat}\webapps\Wedding\mysql\bin 
   and&nbsp;<strong>RUN</strong>  mysqld-nt.exe</div>
   <li>
-<div align="left"><strong>Start up / refresh</strong>Apache Tomcat server</div>
+<div align="left"><strong>Start up / refresh</strong> Apache Tomcat server</div>
   <li>
 <div align="left">The service is accessable via <a 
-  href="http://{DomainName}:{PortNumber/Wedding/">http://{DomainName}:{PortNumber/Wedding/</a>  </div></li></ol>
+  href="http://{DomainName}:{PortNumber}/Wedding/">http://{DomainName}:{PortNumber}/Wedding/</a>  </div></li></ol>
 <h3 align="left">Source Code of the Application</h3>
 <p align="left"><a href="./CI6111A1.zip">Source Code</a>  for the application is 
-downloadable from <a href="./CI6111A1.zip" >HERE</a>  .</p>
+downloadable from <a href="./CI6111A1.zip" >HERE</a>.</p>
 <h3 align="left"> Team Members</h3>
 <ul>
   <li>
@@ -94,6 +94,6 @@ downloadable from <a href="./CI6111A1.zip" >HERE</a>  .</p>
   <li>
 <div align="left">RANDY SUGIANTO (Yuku)</div>
   <li>
-<div align="left">XU SHILEI 
-(Sile)<br>  </div></li></ul>
+<div align="left">XU SHILEI (Sile)</div>
+</li></ul>
 
