@@ -9,6 +9,7 @@
 <%@page import="java.util.Vector"%>
 <%@page import="sg.edu.ntu.wedding.Parse"%>
 <%@page import="sg.edu.ntu.wedding.Importer"%>
+<%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -103,6 +104,11 @@ if (ServletFileUpload.isMultipartContent(request)) {
 <%
 	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
+
+<%
+pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
+%>
+
 <c:if test="${not empty message}">
 <div class="message">${message}</div>
 </c:if>
@@ -121,6 +127,12 @@ function validateForm(form) {
     return true;
 }
 </script>
+
+<% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
+<% } else { %>
+    <p>Please activate a wedding from the weddings page.</p>
+<% } %>
 
 <form name="form0" method="post" onSubmit="return validateForm(this)">
 	<table class="form">
