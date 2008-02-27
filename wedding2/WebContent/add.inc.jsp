@@ -186,7 +186,7 @@ function validateForm(form) {
 
 <h2>Or, import list of guests from file</h2>
 
-<form name="form1" method="post" enctype="multipart/form-data" onSubmit="return validateForm(this)">
+<form name="form1" method="post" enctype="multipart/form-data">
 	<table class="form">
 		<tr>
 			<td>AutoAssign</td>
