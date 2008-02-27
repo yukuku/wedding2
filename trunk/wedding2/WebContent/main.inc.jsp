@@ -33,7 +33,11 @@ that has been realized:</p>
   (manual mode and auto mode)</div>
   <li>
 <div align="left">Support 2 formats of report generation 
-  (PDF format and Microsoft Excel Sheet format)</div></li></ol>
+  (PDF format and Microsoft Excel Sheet format)</div>
+  <li>
+<div align="left">Support 3 guests type 
+	(Vegetarian, Muslim and Normal)</div>
+  </li></ol>
 <h3 align="left"> Usage Instructions</h3>
 <p align="left"> List of menu entries and their services are 
  shown below:</p>
