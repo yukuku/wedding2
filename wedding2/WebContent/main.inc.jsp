@@ -35,7 +35,7 @@ that has been realized:</p>
 <div align="left">Support 2 formats of report generation 
   (PDF format and Microsoft Excel Sheet format)</div>
   <li>
-<div align="left">Support 3 guests type 
+<div align="left">Support 3 guest types 
 	(Vegetarian, Muslim and Normal)</div>
   </li></ol>
 <h3 align="left"> Usage Instructions</h3>
