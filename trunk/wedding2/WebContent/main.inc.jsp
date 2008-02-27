@@ -64,9 +64,12 @@ that has been realized:</p>
   <li>
 <div align="left"><a 
   href="./?module=attendance">Guest Attendance</a> - Attendance tracking page</div></li></ul>
-<h3 align="left"> Installation Instruction</h3>
+<h3 align="left"> Automatic Installation Instruction</h3>
+<p>Run the <b>Wedding.exe</b> file, which is a self-extracting archive, to a folder in the hardisk without space. For example, <b>c:\wedding</b>.
+Then, run the <b>run.bat</b> file to start MySQL server, Tomcat server, and the built-in Firefox browser.
+<h3 align="left"> Manual Installation Instruction</h3>
 <p align="left">Please follow below instructions to install 
-the software package to new application server:</p>
+the software package to new application server manually:</p>
 <ol>
   <li>
 <div align="left"><strong>Unzip</strong> application to 
