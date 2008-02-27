@@ -2,15 +2,27 @@
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
+<%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="sg.edu.ntu.wedding.Assignment" %>
+<%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@page import="sg.edu.ntu.wedding.Wedding" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%DatabaseConnection db = DatabaseConnection.getInstance(); %>
 
 <h1>Edit guests</h1>
 
 <form name="formGuestList" action="./?module=guestlist" method="post">
 <input type="hidden" name="weddingID" value="0" />
 </form>
+
+<%
+	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
+%>
+
+<%
+		pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
+%>
 
 <script language="javascript">
 function validForm(frm){
@@ -52,8 +64,7 @@ function isNumeric(str){
 </script>
 
 <%         
-		int id= Integer.parseInt(request.getParameter("id"));		
-	    DatabaseConnection db = DatabaseConnection.getInstance();
+		int id= Integer.parseInt(request.getParameter("id"));	    
         ResultSet rs= db.select("SELECT * FROM IP_GUEST WHERE ID=?",id);
         rs.next();
         Guest g = new Guest(rs); 
@@ -81,6 +92,12 @@ function isNumeric(str){
 		}
 	}
 %>
+
+<% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
+<% } else { %>
+    <p>Please activate a wedding from the weddings page.</p>
+<% } %>
 
 
 <form name="frmGuestEdit" method="post" onSubmit="return validForm(this)">
@@ -161,5 +178,7 @@ function isNumeric(str){
 
 </form>
 
-
+<%
+}
+%>
 

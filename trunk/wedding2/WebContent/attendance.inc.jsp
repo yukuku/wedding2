@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="sg.edu.ntu.wedding.DatabaseConnection"%>
+<%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="sg.edu.ntu.wedding.Wedding"%>
 <%@page import="sg.edu.ntu.wedding.Guest"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
@@ -56,7 +57,17 @@ if ("attend".equals(action)) {
 }
 %>
 
+<%
+pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
+%>
+
 <h1>Guest Attendance</h1>
+
+<% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
+<% } else { %>
+    <p>Please activate a wedding from the weddings page.</p>
+<% } %>
 
 <c:if test="${not empty message}">
 <div class="message">${message}</div>

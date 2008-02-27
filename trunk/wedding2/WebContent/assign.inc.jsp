@@ -6,6 +6,7 @@
 <%@page import="sg.edu.ntu.wedding.Guest"%>
 <%@page import="sg.edu.ntu.wedding.Assignment"%>
 <%@page import="java.util.Vector"%>
+<%@page import="sg.edu.ntu.wedding.Constant"%>
 <%@page import="sg.edu.ntu.wedding.Table"%>
 <%@page import="sg.edu.ntu.wedding.ActiveWedding"%>
 <%@page import="java.sql.ResultSet"%>
@@ -21,6 +22,10 @@
 
 <%
 	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
+%>
+
+<%
+		pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
 %>
 
 <%
@@ -40,6 +45,13 @@
 			}
 		}
 %>
+
+<% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
+<% } else { %>
+    <p>Please activate a wedding from the weddings page.</p>
+<% } %>
+
 <p>Select guest to assign.</p>
 
 <table class="listview">
