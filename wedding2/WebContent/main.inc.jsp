@@ -62,9 +62,6 @@ that has been realized:</p>
   Assignments</a> - Table allocation page (manual)</div>
   <li>
 <div align="left"><a 
-  href="./?module=auto">Auto Assignments (tm)</a> - Table allocation page (auto)</div>
-  <li>
-<div align="left"><a 
   href="./?module=attendance">Guest Attendance</a> - Attendance tracking page</div></li></ul>
 <h3 align="left"> Installation Instruction</h3>
 <p align="left">Please follow below instructions to install 

@@ -12,16 +12,15 @@ DatabaseConnection db = DatabaseConnection.getInstance();
 <!--//
 var MENU_ITEMS = [
 ['Home Page','./?module=main', {'tw' : '_parent'},]
-,['Manage Weddings','./?module=weddings', {'tw' : '_parent'},]
+,['Weddings','./?module=weddings', {'tw' : '_parent'},]
 
 <% if (ActiveWedding.getActiveWedding(db, session) != null) { %>
 
 ,['Overview','./?module=overview', {'tw' : '_parent'},]
 ,['Add / Import Guests','./?module=add', {'tw' : '_parent'},]
 ,['Guest List','./?module=guestlist', {'tw' : '_parent'},]
-,['Table Assignments','./?module=assign', {'tw' : '_parent'},]
-,['Auto Assignments (tm)','./?module=auto', {'tw' : '_parent'},]
 ,['Guest Attendance','./?module=attendance', {'tw' : '_parent'},]
+,['Table Assignments','./?module=assign', {'tw' : '_parent'},]
 
 <% } %>
 

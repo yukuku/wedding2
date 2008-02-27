@@ -74,7 +74,7 @@ function delete_(id) {
 <h2>Active wedding</h2>
 
 <% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
-    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> (${active.date} at ${active.hotelName})</p>
+    <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
 <% } else { %>
     <p>Please activate a wedding from the list below.</p>
 <% } %>
