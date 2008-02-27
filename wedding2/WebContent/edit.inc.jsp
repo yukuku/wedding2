@@ -12,7 +12,9 @@
 
 <h1>Edit guests</h1>
 
+
 <%
+	//checking whether wedding is still active or not
 	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
 %>
 
@@ -22,10 +24,12 @@
 
 
 <%
-		pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
+	//set to show active wedding information
+	pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
 %>
 
 <script language="javascript">
+//check form validation
 function validForm(frm){
     if (!Validation.filled(frm.name)) return false;
 	if(!isNumeric(frm.guestTotal.value)){
@@ -64,7 +68,9 @@ function isNumeric(str){
 
 </script>
 
-<%         
+
+<%    
+		//retrieving Guest information from database
 		int id = Integer.parseInt(request.getParameter("id"));
 		int wid = Integer.parseInt(request.getParameter("weddingID"));
         ResultSet rs = db.select("SELECT * FROM IP_GUEST WHERE ID = ? AND weddingId = ?",id,wid);
@@ -72,12 +78,16 @@ function isNumeric(str){
         Guest g = new Guest(rs); 
         Guest gn=new Guest(rs);
         pageContext.setAttribute("g", g);
-       
+%>
+
+<%   
+		//Check button click 
 		String saction=request.getParameter("action");
 		if("submit".equalsIgnoreCase(saction)){
 %>
 	<jsp:setProperty name="g" property="*" />
-<%	    
+<%	   
+		//update Guest information
 		if (id > 0) {
 			boolean b=db.update(g);
 			if (b){			
@@ -95,7 +105,10 @@ function isNumeric(str){
 	}
 %>
 
-<% if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
+
+<% 
+	//Show wedding information
+	if (session.getAttribute(Constant.Session.activeWedding) != null) { %>
     <p>The active wedding now is <b>${active.brideName} & ${active.groomName}</b> on ${active.date} at ${active.hotelName}</p>
 <% } else { %>
     <p>Please activate a wedding from the weddings page.</p>
