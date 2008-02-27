@@ -12,13 +12,14 @@
 
 <h1>Edit guests</h1>
 
+<%
+	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
+%>
+
 <form name="formGuestList" action="./?module=guestlist" method="post">
 <input type="hidden" name="weddingID" value="0" />
 </form>
 
-<%
-	if (ActiveWedding.getAndCheckActiveWedding(db, session, out) != null) {
-%>
 
 <%
 		pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
@@ -64,8 +65,9 @@ function isNumeric(str){
 </script>
 
 <%         
-		int id= Integer.parseInt(request.getParameter("id"));	    
-        ResultSet rs= db.select("SELECT * FROM IP_GUEST WHERE ID=?",id);
+		int id = Integer.parseInt(request.getParameter("id"));
+		int wid = Integer.parseInt(request.getParameter("weddingID"));
+        ResultSet rs = db.select("SELECT * FROM IP_GUEST WHERE ID = ? AND weddingId = ?",id,wid);
         rs.next();
         Guest g = new Guest(rs); 
         Guest gn=new Guest(rs);
@@ -169,8 +171,9 @@ function isNumeric(str){
     </tr>
     <tr>
     <tr>
-        <td><input type="hidden" name="action" value="submit" />        	
-        	<input type="hidden" name="id" id="id" value="${g.id}" />        	
+        <td><input type="hidden" name="action" value="submit"/>        	
+        	<input type="hidden" name="id" id="id" value="${g.id}"/>
+        	<input type="hidden" name="weddingID" value="${g.weddingID}"/>        	
         </td>
         <td><input type="submit" value="Edit" /></td>
     <tr>   
