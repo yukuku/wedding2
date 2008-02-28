@@ -136,10 +136,10 @@ function isNumeric(str){
             	</c:if>
             	<option value="relative" ${sel}>relative</option>
         		<c:set var="sel" value=""></c:set>
-            	<c:if test="${g.category == 'collage'}">
+            	<c:if test="${g.category == 'collague'}">
               		<c:set var="sel" value="selected"></c:set>
             	</c:if>
-            	<option value="collage" ${sel}>collage</option>
+            	<option value="collague" ${sel}>collague</option>
          		<c:set var="sel" value=""></c:set>
             	<c:if test="${g.category == 'friend'}">
               		<c:set var="sel" value="selected"></c:set>
