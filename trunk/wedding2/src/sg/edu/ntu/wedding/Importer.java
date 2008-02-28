@@ -43,7 +43,7 @@ public class Importer {
 				String strGuestTotal = vFileContent.elementAt(3).trim();
 				if (validateNumber(strGuestTotal) == false)
 					return -4;
-				
+				    
 				// Validate Guest Vegetarian
 				String strGuestVegetarian = vFileContent.elementAt(4).trim();
 				if (validateNumber(strGuestVegetarian) == false)
@@ -72,8 +72,8 @@ public class Importer {
 			boolean blnAutoAssignNotComplete = false;
 			// Prepare for Import only if all rows are validated correctly
 			for (Vector<String> vFileContent : vFileContents) {
-				int intGuestId = dbcConnection.insert("Insert Into IP_GUEST (weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), "invited", vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
+				int intGuestId = dbcConnection.insert("Insert Into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
+				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
 				if (intAutoAssign == 1) {
 					intAutoAssignResult = AutoAssign.AutoAssignSingleGuest(intGuestId, wWedding.getId(), Integer.parseInt(vFileContent.elementAt(3).trim()), Integer.parseInt(vFileContent.elementAt(4).trim()), Integer.parseInt(vFileContent.elementAt(5).trim()), wWedding);	
 					if (intAutoAssignResult < 1)
@@ -87,8 +87,8 @@ public class Importer {
 		}
 		else {
 			for (Vector<String> vFileContent : vFileContents) {
-				int intGuestId = dbcConnection.insert("Insert Into IP_GUEST (weddingID, name, category, invitedBy, status, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?, ?)", 
-				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), "invited", vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
+				int intGuestId = dbcConnection.insert("Insert Into IP_GUEST (weddingID, name, category, invitedBy, guestTotal, guestVeg, guestMus) values (?, ?, ?, ?, ?, ?, ?)", 
+				intWeddingId, vFileContent.elementAt(0).trim(), vFileContent.elementAt(1).trim(), vFileContent.elementAt(2).trim(), vFileContent.elementAt(3).trim(), vFileContent.elementAt(4).trim(), vFileContent.elementAt(5).trim());
 			}	
 			return 1;
 		}
