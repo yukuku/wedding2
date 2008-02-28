@@ -87,7 +87,7 @@ pageContext.setAttribute("active", ActiveWedding.getActiveWedding(db, session));
 				while (rs.next()) {
 					Guest g = new Guest(rs);
 					
-					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='range' min='0' max='%d' required='required' maxlength='2' size='4' style='text-align: right' /></td></tr>", 
+					out.println(String.format("<input type='hidden' name='guestId' value='%d' /><tr><td>%s</td><td>%s</td><td>%d</td><td><input name='attended' value='%d' type='number' min='0' max='%d' required='required' maxlength='2' size='4' style='text-align: right' /></td></tr>", 
 							g.getId(), g.getName(), g.getTableNumber() == 0 ? "-" : String.valueOf(g.getTableNumber()), g.getGuestTotal(), g.getAttended(), g.getGuestTotal())
 					);
 				}
