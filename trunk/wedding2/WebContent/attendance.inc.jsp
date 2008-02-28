@@ -27,28 +27,31 @@ if ("attend".equals(action)) {
 	String upmsg="";
 	String msg="";
 	
-	for (int i = 0; i < guestIds.length && i < attendeds.length; i++) {
-		int guestId = Parse.toInt(guestIds[i]);
-		int attended = Parse.toInt(attendeds[i]);		
-		
-        synchronized(db) {
-            int max = db.fetchInt("select guestTotal from IP_GUEST where id=?", guestId);
-            String name = db.fetchStr("select name from IP_GUEST where id=?", guestId);
-            //if (attended > max) attended = max;                       
-            //db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
-            if (attended > max){
-            	grmsg = grmsg.concat(", " + name);
-            }else if (attended < 0 ){            	
-            	ltmsg = ltmsg.concat(", " + name);            	
-            }else{
-            	db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
-            	upmsg = upmsg.concat(", " + name);
+    if (guestIds != null && attendeds != null) {
+        
+    	for (int i = 0; i < guestIds.length && i < attendeds.length; i++) {
+    		int guestId = Parse.toInt(guestIds[i]);
+    		int attended = Parse.toInt(attendeds[i]);		
+    		
+            synchronized(db) {
+                int max = db.fetchInt("select guestTotal from IP_GUEST where id=?", guestId);
+                String name = db.fetchStr("select name from IP_GUEST where id=?", guestId);
+                //if (attended > max) attended = max;                       
+                //db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+                if (attended > max){
+                	grmsg = grmsg.concat(", " + name);
+                }else if (attended < 0 ){            	
+                	ltmsg = ltmsg.concat(", " + name);            	
+                }else{
+                	db.execute("update IP_GUEST set attended=? where id=?", attended, guestId);
+                	upmsg = upmsg.concat(", " + name);
+                }
             }
-        }
-	}
-	
+    	}
+    }
+    	
 	if (!upmsg.equals(""))
-  		msg = msg.concat("Attendance status updated for" + upmsg + "!  ");
+  		msg = msg.concat("Attendance status updated! ");
 	if (!ltmsg.equals(""))
 		msg = msg.concat("Make sure attended is not less than zero for" + ltmsg + "!  ");
 	if (!grmsg.equals(""))
