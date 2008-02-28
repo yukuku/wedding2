@@ -67,6 +67,21 @@ function delete_(id) {
     }
 }
 
+function validateForm(form) {
+    if (!Validation.filled(form.brideName)) return false;
+    if (!Validation.filled(form.groomName)) return false;
+    if (!Validation.filled(form.date)) return false;
+    if (!Validation.filled(form.hotelName)) return false;
+    if (!Validation.number(form.tables, 1, 999)) return false;
+    var d = form.date.value;
+    if (! d.match(/^\d\d\d\d-\d\d-\d\d$/)) {
+        form.date.focus();
+        alert("The date syntax is wrong!");
+        return false;
+    }
+    return true;
+}
+
 </script>
 
 <h1>Manage weddings</h1>
@@ -100,7 +115,7 @@ function delete_(id) {
 
 <h2>Create a new wedding</h2>
 
-<form name="form1" method="post">
+<form name="form1" method="post" onsubmit="return validateForm(this)">
 <table class="form">
     <tr>
         <td>Bride Name</td>
